@@ -41,7 +41,7 @@ export default async function CheckoutPage({
                     </div>
                 </div>
 
-                <CheckoutForm packageType={packageType} price={price} userId={user.id} />
+                <CheckoutForm packageType={packageType} price={price} userId={user!.id} />
             </div>
         </div>
     )
