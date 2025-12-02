@@ -11,7 +11,7 @@ export async function POST(request: Request) {
         if (!profile) {
             const { data: { user } } = await supabase.auth.getUser()
             if (user && user.email) {
-                await supabase.from('profiles').insert({ id: userId, email: user.email })
+                await supabase.from('profiles').insert({ id: userId, email: user.email } as any)
             }
         }
 
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
             package_type: packageType,
             status: 'Pending',
             payment_method: paymentMethod,
-        }).select()
+        } as any).select()
 
         if (error) throw error
 
