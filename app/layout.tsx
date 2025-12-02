@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description: 'Get the best IPTV service with over 10,000 channels, movies, and series. Instant delivery, anti-freeze technology, and 24/7 support.',
 }
 
+import ChatWidget from '@/components/ChatWidget'
+
 export default function RootLayout({
   children,
 }: {
@@ -16,7 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className} suppressHydrationWarning>{children}</body>
+      <body className={inter.className} suppressHydrationWarning>
+        {children}
+        <ChatWidget />
+      </body>
     </html>
   )
 }
