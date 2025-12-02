@@ -1,14 +1,18 @@
 'use client'
-import Link from 'next/link'
+import { Link, useRouter } from '@/i18n/routing'
 import { createClient } from '@/lib/supabase/client'
 import { useEffect, useState } from 'react'
 import { User } from '@supabase/supabase-js'
 import { LogOut, Menu, X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Navbar() {
+    const t = useTranslations('Navbar')
     const [user, setUser] = useState<User | null>(null)
     const [isOpen, setIsOpen] = useState(false)
     const supabase = createClient()
+    const router = useRouter()
 
     useEffect(() => {
         const getUser = async () => {
@@ -26,7 +30,7 @@ export default function Navbar() {
 
     const handleLogout = async () => {
         await supabase.auth.signOut()
-        window.location.href = '/'
+        router.push('/')
     }
 
     return (
@@ -39,24 +43,25 @@ export default function Navbar() {
                         </Link>
                     </div>
                     <div className="hidden md:block">
-                        <div className="ml-10 flex items-baseline space-x-4">
+                        <div className="ml-10 flex items-baseline space-x-4 items-center">
                             <Link href="/#pricing" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                                Pricing
+                                {t('pricing')}
                             </Link>
                             {user ? (
                                 <>
                                     <Link href="/dashboard" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                                        Dashboard
+                                        {t('dashboard')}
                                     </Link>
                                     <button onClick={handleLogout} className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2">
-                                        <LogOut size={16} /> Logout
+                                        <LogOut size={16} /> {t('logout')}
                                     </button>
                                 </>
                             ) : (
                                 <Link href="/login" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
-                                    Login
+                                    {t('login')}
                                 </Link>
                             )}
+                            <LanguageSwitcher />
                         </div>
                     </div>
                     {/* Mobile menu button */}
@@ -75,22 +80,25 @@ export default function Navbar() {
                 <div className="md:hidden">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <Link href="/#pricing" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                            Pricing
+                            {t('pricing')}
                         </Link>
                         {user ? (
                             <>
                                 <Link href="/dashboard" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                                    Dashboard
+                                    {t('dashboard')}
                                 </Link>
                                 <button onClick={handleLogout} className="text-gray-300 hover:text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium">
-                                    Logout
+                                    {t('logout')}
                                 </button>
                             </>
                         ) : (
                             <Link href="/login" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                                Login
+                                {t('login')}
                             </Link>
                         )}
+                        <div className="px-3 py-2">
+                            <LanguageSwitcher />
+                        </div>
                     </div>
                 </div>
             )}

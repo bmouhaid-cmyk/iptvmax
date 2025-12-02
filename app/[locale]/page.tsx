@@ -1,8 +1,12 @@
 import Navbar from '@/components/Navbar'
 import PricingCard from '@/components/PricingCard'
 import { Tv, Zap, Globe } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 export default function Home() {
+  const t = useTranslations('Hero')
+  const tPricing = useTranslations('Pricing')
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <Navbar />
@@ -11,17 +15,17 @@ export default function Home() {
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 text-center">
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400">
-            Premium IPTV Service
+            {t('title')}
           </h1>
           <p className="mt-6 text-lg leading-8 text-gray-300">
-            Access thousands of channels, movies, and series in 4K/FHD quality. Stable, reliable, and affordable.
+            {t('subtitle')}
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a href="#pricing" className="rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
-              View Plans
+              {tPricing('subscribe')}
             </a>
             <a href="#" className="text-sm font-semibold leading-6 text-white">
-              Learn more <span aria-hidden="true">→</span>
+              {t('features')} <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
@@ -80,31 +84,34 @@ export default function Home() {
       <div id="pricing" className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl sm:text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Simple Pricing</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">{tPricing('title')}</h2>
             <p className="mt-6 text-lg leading-8 text-gray-300">
-              Choose the plan that fits your needs. No hidden fees.
+              {tPricing('subtitle')}
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none lg:items-center lg:gap-8">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 w-full">
               <PricingCard
-                title="1 Month"
+                title={`1 ${tPricing('month')}`}
                 price="10"
-                duration="mo"
+                duration={tPricing('month')}
                 features={['1 Device', '4K/FHD Quality', 'Anti-Freeze Technology', '24/7 Support']}
+                ctaText={tPricing('subscribe')}
               />
               <PricingCard
-                title="3 Months"
+                title={`3 ${tPricing('month')}s`}
                 price="25"
-                duration="3 mos"
+                duration={`3 ${tPricing('month')}s`}
                 features={['1 Device', '4K/FHD Quality', 'Anti-Freeze Technology', '24/7 Support']}
                 popular={true}
+                ctaText={tPricing('subscribe')}
               />
               <PricingCard
-                title="1 Year"
+                title={`1 ${tPricing('year')}`}
                 price="70"
-                duration="yr"
+                duration={tPricing('year')}
                 features={['2 Devices', '4K/FHD Quality', 'Anti-Freeze Technology', 'Priority Support']}
+                ctaText={tPricing('subscribe')}
               />
             </div>
           </div>

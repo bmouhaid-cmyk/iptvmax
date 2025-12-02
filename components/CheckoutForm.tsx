@@ -1,8 +1,10 @@
 'use client'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
 
 export default function CheckoutForm({ packageType, price, userId }: { packageType: string, price: string, userId: string }) {
+    const t = useTranslations('Checkout')
     const [paymentMethod, setPaymentMethod] = useState('crypto')
     const [loading, setLoading] = useState(false)
     const [copied, setCopied] = useState(false)
@@ -103,7 +105,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                 <p className="text-yellow-200 text-sm font-medium flex items-start gap-2">
                     <span className="text-lg">⚠️</span>
                     <span>
-                        <strong>Important:</strong> Please take a screenshot of your payment. You will need to send it to us via WhatsApp to activate your subscription.
+                        <strong>{t('important')}:</strong> {t('instruction')}
                     </span>
                 </p>
             </div>
@@ -113,16 +115,16 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                 disabled={loading}
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-                {loading ? 'Processing...' : 'I Have Made The Payment'}
+                {loading ? t('processing') : t('payButton')}
             </button>
 
             {/* Payment Proof Modal */}
             {showModal && (
                 <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
                     <div className="bg-slate-900 rounded-xl p-6 max-w-md w-full border border-slate-700 shadow-2xl">
-                        <h3 className="text-xl font-bold mb-4 text-center">Payment Confirmation</h3>
+                        <h3 className="text-xl font-bold mb-4 text-center">{t('modalTitle')}</h3>
                         <p className="text-gray-300 mb-6 text-center">
-                            Please send a screenshot of your payment to our WhatsApp support to activate your subscription immediately.
+                            {t('modalBody')}
                         </p>
                         <div className="space-y-3">
                             <a
@@ -131,13 +133,13 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                                 rel="noopener noreferrer"
                                 className="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg text-center transition-colors"
                             >
-                                Send Proof on WhatsApp
+                                {t('whatsappButton')}
                             </a>
                             <button
                                 onClick={() => router.push('/dashboard')}
                                 className="block w-full bg-slate-700 hover:bg-slate-600 text-white font-semibold py-3 rounded-lg transition-colors"
                             >
-                                Go to Dashboard
+                                {t('dashboardButton')}
                             </button>
                         </div>
                     </div>

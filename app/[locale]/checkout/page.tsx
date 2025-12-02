@@ -1,20 +1,24 @@
 import { createClient } from '@/lib/supabase/server'
-import { redirect } from 'next/navigation'
+import { redirect } from '@/i18n/routing'
 import CheckoutForm from '@/components/CheckoutForm'
+import { getTranslations } from 'next-intl/server'
 
 export default async function CheckoutPage({
     searchParams,
+    params
 }: {
     searchParams: Promise<{ package?: string }>
+    params: Promise<{ locale: string }>
 }) {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
+    const { locale } = await params
+    const t = await getTranslations({ locale, namespace: 'Checkout' })
 
     const { package: pkg } = await searchParams
 
     if (!user) {
-        const nextUrl = '/login?next=/checkout?package=' + (pkg ?? '')
-        redirect(nextUrl)
+        redirect({ href: `/login?next=/checkout?package=${pkg ?? ''}`, locale })
     }
 
     const packageType = pkg?.replace('-', ' ') || '1 month'
@@ -27,7 +31,7 @@ export default async function CheckoutPage({
     return (
         <div className="min-h-screen bg-slate-950 text-white py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md mx-auto bg-slate-900 rounded-xl shadow-md overflow-hidden md:max-w-2xl p-8 border border-slate-800">
-                <h2 className="text-2xl font-bold mb-6 text-center">Checkout</h2>
+                <h2 className="text-2xl font-bold mb-6 text-center">{t('title')}</h2>
 
                 <div className="mb-8 p-4 bg-slate-800 rounded-lg border border-slate-700">
                     <h3 className="text-lg font-semibold mb-2">Order Summary</h3>

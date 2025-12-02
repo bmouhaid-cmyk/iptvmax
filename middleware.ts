@@ -1,10 +1,13 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import createMiddleware from 'next-intl/middleware'
+import { routing } from './i18n/routing'
+
+const intlMiddleware = createMiddleware(routing)
 
 export async function updateSession(request: NextRequest) {
-    let supabaseResponse = NextResponse.next({
-        request,
-    })
+    // Run next-intl middleware first to get the localized response
+    const response = intlMiddleware(request)
 
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -18,11 +21,9 @@ export async function updateSession(request: NextRequest) {
                     cookiesToSet.forEach(({ name, value, options }) =>
                         request.cookies.set(name, value)
                     )
-                    supabaseResponse = NextResponse.next({
-                        request,
-                    })
+
                     cookiesToSet.forEach(({ name, value, options }) =>
-                        supabaseResponse.cookies.set(name, value, options)
+                        response.cookies.set(name, value, options)
                     )
                 },
             },
@@ -41,13 +42,15 @@ export async function updateSession(request: NextRequest) {
         !user &&
         !request.nextUrl.pathname.startsWith('/login') &&
         !request.nextUrl.pathname.startsWith('/auth') &&
-        request.nextUrl.pathname !== '/'
+        request.nextUrl.pathname !== '/' &&
+        // Exclude localized paths from auth check if needed, or handle them
+        !routing.locales.some(locale => request.nextUrl.pathname.startsWith(`/${locale}/login`))
     ) {
         // no user, potentially redirect to login
         // but for now we just refresh session
     }
 
-    return supabaseResponse
+    return response
 }
 
 export async function middleware(request: NextRequest) {
@@ -56,14 +59,9 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
     matcher: [
-        /*
-         * Match all request paths except for the ones starting with:
-         * - _next/static (static files)
-         * - _next/image (image optimization files)
-         * - favicon.ico (favicon file)
-         * - images - .svg, .png, .jpg, .jpeg, .gif, .webp
-         * Feel free to modify this pattern to include more paths.
-         */
-        '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+        // Match all pathnames except for
+        // - … if they start with `/api`, `/_next` or `/_vercel`
+        // - … the ones containing a dot (e.g. `favicon.ico`)
+        '/((?!api|_next|_vercel|.*\\..*).*)',
     ],
 }

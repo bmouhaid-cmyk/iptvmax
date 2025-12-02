@@ -1,0 +1,37 @@
+{
+    "Navbar": {
+        "home": "Inicio",
+        "features": "Características",
+        "pricing": "Precios",
+        "login": "Iniciar sesión",
+        "dashboard": "Panel",
+        "logout": "Cerrar sesión"
+    },
+    "Hero": {
+        "title": "Servicio IPTV Premium",
+        "subtitle": "Acceda a más de 10,000 canales y contenido VOD en calidad 4K.",
+        "cta": "Empezar",
+        "features": "Ver características"
+    },
+    "Pricing": {
+        "title": "Precios Simples",
+        "subtitle": "Elija el plan que se adapte a sus necesidades.",
+        "month": "Mes",
+        "year": "Año",
+        "subscribe": "Suscribirse"
+    },
+    "Checkout": {
+        "title": "Pago",
+        "package": "Paquete",
+        "price": "Precio",
+        "paymentMethod": "Método de pago",
+        "payButton": "He realizado el pago",
+        "processing": "Procesando...",
+        "important": "Importante",
+        "instruction": "Por favor, tome una captura de pantalla de su pago. Deberá enviárnosla por WhatsApp para activar su suscripción.",
+        "modalTitle": "Confirmación de pago",
+        "modalBody": "Por favor envíe una captura de pantalla de su pago a nuestro soporte de WhatsApp para activar su suscripción inmediatamente.",
+        "whatsappButton": "Enviar prueba por WhatsApp",
+        "dashboardButton": "Ir al panel"
+    }
+}

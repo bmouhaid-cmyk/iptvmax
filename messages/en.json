@@ -1,0 +1,37 @@
+{
+    "Navbar": {
+        "home": "Home",
+        "features": "Features",
+        "pricing": "Pricing",
+        "login": "Login",
+        "dashboard": "Dashboard",
+        "logout": "Logout"
+    },
+    "Hero": {
+        "title": "Premium IPTV Service",
+        "subtitle": "Access over 10,000 channels and VOD content in 4K quality.",
+        "cta": "Get Started",
+        "features": "View Features"
+    },
+    "Pricing": {
+        "title": "Simple Pricing",
+        "subtitle": "Choose the plan that fits your needs.",
+        "month": "Month",
+        "year": "Year",
+        "subscribe": "Subscribe Now"
+    },
+    "Checkout": {
+        "title": "Checkout",
+        "package": "Package",
+        "price": "Price",
+        "paymentMethod": "Payment Method",
+        "payButton": "I Have Made The Payment",
+        "processing": "Processing...",
+        "important": "Important",
+        "instruction": "Please take a screenshot of your payment. You will need to send it to us via WhatsApp to activate your subscription.",
+        "modalTitle": "Payment Confirmation",
+        "modalBody": "Please send a screenshot of your payment to our WhatsApp support to activate your subscription immediately.",
+        "whatsappButton": "Send Proof on WhatsApp",
+        "dashboardButton": "Go to Dashboard"
+    }
+}
