@@ -28,9 +28,9 @@
         "payButton": "J'ai effectué le paiement",
         "processing": "Traitement...",
         "important": "Important",
-        "instruction": "Veuillez prendre une capture d'écran de votre paiement. Vous devrez nous l'envoyer via WhatsApp pour activer votre abonnement.",
+        "instruction": "Veuillez télécharger une capture d'écran de votre paiement ou saisir votre adresse de portefeuille/email ci-dessous pour vérifier votre abonnement.",
         "modalTitle": "Confirmation de paiement",
-        "modalBody": "Veuillez envoyer une capture d'écran de votre paiement à notre support WhatsApp pour activer votre abonnement immédiatement.",
+        "modalBody": "Votre preuve de paiement a été reçue ! Nous allons la vérifier et activer votre abonnement sous peu.",
         "whatsappButton": "Envoyer la preuve sur WhatsApp",
         "dashboardButton": "Aller au tableau de bord"
     },

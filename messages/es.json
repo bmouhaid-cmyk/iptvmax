@@ -28,9 +28,9 @@
         "payButton": "He realizado el pago",
         "processing": "Procesando...",
         "important": "Importante",
-        "instruction": "Por favor, tome una captura de pantalla de su pago. Deberá enviárnosla por WhatsApp para activar su suscripción.",
+        "instruction": "Por favor, suba una captura de pantalla de su pago o ingrese su dirección de billetera/correo electrónico a continuación para verificar su suscripción.",
         "modalTitle": "Confirmación de pago",
-        "modalBody": "Por favor envíe una captura de pantalla de su pago a nuestro soporte de WhatsApp para activar su suscripción inmediatamente.",
+        "modalBody": "¡Se ha recibido su comprobante de pago! Lo verificaremos y activaremos su suscripción en breve.",
         "whatsappButton": "Enviar prueba por WhatsApp",
         "dashboardButton": "Ir al panel"
     },

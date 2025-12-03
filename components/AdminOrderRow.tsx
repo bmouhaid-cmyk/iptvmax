@@ -57,6 +57,21 @@ export default function AdminOrderRow({ order }: { order: any }) {
                     <div className="flex justify-between text-sm text-gray-400">
                         <p className="capitalize">{order.package_type} - {order.payment_method}</p>
                         <p suppressHydrationWarning>{new Date(order.created_at).toLocaleDateString()}</p>
+                        {order.payment_proof_url && (
+                            <a
+                                href={order.payment_proof_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-400 hover:text-blue-300 underline ml-4"
+                            >
+                                View Proof
+                            </a>
+                        )}
+                        {order.payment_proof_text && (
+                            <span className="ml-4 text-gray-300 bg-slate-800 px-2 py-1 rounded text-xs border border-slate-700">
+                                Proof: {order.payment_proof_text}
+                            </span>
+                        )}
                     </div>
 
                     <div className="mt-4">

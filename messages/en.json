@@ -28,9 +28,9 @@
         "payButton": "I Have Made The Payment",
         "processing": "Processing...",
         "important": "Important",
-        "instruction": "Please take a screenshot of your payment. You will need to send it to us via WhatsApp to activate your subscription.",
+        "instruction": "Please upload a screenshot of your payment or enter your wallet address/email below to verify your subscription.",
         "modalTitle": "Payment Confirmation",
-        "modalBody": "Please send a screenshot of your payment to our WhatsApp support to activate your subscription immediately.",
+        "modalBody": "Your payment proof has been received! We will verify it and activate your subscription shortly.",
         "whatsappButton": "Send Proof on WhatsApp",
         "dashboardButton": "Go to Dashboard"
     },

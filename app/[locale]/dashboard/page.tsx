@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Navbar from '@/components/Navbar'
+import DashboardProofUpload from '@/components/DashboardProofUpload'
 
 export default async function Dashboard() {
     const supabase = await createClient()
@@ -56,6 +57,12 @@ export default async function Dashboard() {
                                                     </p>
                                                 </div>
                                             </div>
+
+                                            {/* Late Payment Proof Upload */}
+                                            {order.status === 'Pending' && !order.payment_proof_url && (
+                                                <DashboardProofUpload orderId={order.id} userId={user.id} />
+                                            )}
+
                                             {order.status === 'Completed' && order.iptv_credentials && (
                                                 <div className="mt-4 p-4 bg-slate-800 rounded-md border border-slate-700">
                                                     <h4 className="text-sm font-medium text-white mb-2">Your Credentials:</h4>
