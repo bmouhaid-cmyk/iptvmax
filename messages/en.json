@@ -33,5 +33,25 @@
         "modalBody": "Please send a screenshot of your payment to our WhatsApp support to activate your subscription immediately.",
         "whatsappButton": "Send Proof on WhatsApp",
         "dashboardButton": "Go to Dashboard"
+    },
+    "Categories": {
+        "title": "Available Channel Categories",
+        "sports": "Sports Channels",
+        "movies": "Movies & Series",
+        "news": "News Channels",
+        "kids": "Kids Channels",
+        "documentary": "Documentary Channels",
+        "music": "Music Channels",
+        "streaming": "Streaming Platforms",
+        "entertainment": "Entertainment",
+        "general": "General Channels",
+        "count": "{count}+ Channels",
+        "more": "And more channels!",
+        "sample": "This is just a sample of the channels available in the {category} category. Subscribe now to access all channels.",
+        "available": "{count} Channels Available"
+    },
+    "Slider": {
+        "totalChannels": "+15,000 Channels",
+        "popular": "Popular Channels"
     }
 }

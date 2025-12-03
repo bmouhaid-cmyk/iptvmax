@@ -33,5 +33,25 @@
         "modalBody": "Por favor envíe una captura de pantalla de su pago a nuestro soporte de WhatsApp para activar su suscripción inmediatamente.",
         "whatsappButton": "Enviar prueba por WhatsApp",
         "dashboardButton": "Ir al panel"
+    },
+    "Categories": {
+        "title": "Categorías de canales disponibles",
+        "sports": "Canales de deportes",
+        "movies": "Películas y series",
+        "news": "Canales de noticias",
+        "kids": "Canales para niños",
+        "documentary": "Canales documentales",
+        "music": "Canales de música",
+        "streaming": "Plataformas de streaming",
+        "entertainment": "Entretenimiento",
+        "general": "Canales generales",
+        "count": "+{count} Canales",
+        "more": "¡Y más canales!",
+        "sample": "Esto es solo una muestra de los canales disponibles en la categoría {category}. Suscríbase ahora para acceder a todos los canales.",
+        "available": "{count} Canales disponibles"
+    },
+    "Slider": {
+        "totalChannels": "+15,000 Canales",
+        "popular": "Canales populares"
     }
 }

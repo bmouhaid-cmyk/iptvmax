@@ -33,5 +33,25 @@
         "modalBody": "Veuillez envoyer une capture d'écran de votre paiement à notre support WhatsApp pour activer votre abonnement immédiatement.",
         "whatsappButton": "Envoyer la preuve sur WhatsApp",
         "dashboardButton": "Aller au tableau de bord"
+    },
+    "Categories": {
+        "title": "Catégories de chaînes disponibles",
+        "sports": "Chaînes de sport",
+        "movies": "Films et séries",
+        "news": "Chaînes d'information",
+        "kids": "Chaînes pour enfants",
+        "documentary": "Chaînes documentaires",
+        "music": "Chaînes musicales",
+        "streaming": "Plateformes de streaming",
+        "entertainment": "Divertissement",
+        "general": "Chaînes généralistes",
+        "count": "+{count} Chaînes",
+        "more": "Et plus de chaînes !",
+        "sample": "Ceci n'est qu'un échantillon des chaînes disponibles dans la catégorie {category}. Abonnez-vous maintenant pour accéder à toutes les chaînes.",
+        "available": "{count} Chaînes disponibles"
+    },
+    "Slider": {
+        "totalChannels": "+15 000 Chaînes",
+        "popular": "Chaînes populaires"
     }
 }

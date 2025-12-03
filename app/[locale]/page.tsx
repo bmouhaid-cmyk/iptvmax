@@ -1,5 +1,7 @@
 import Navbar from '@/components/Navbar'
 import PricingCard from '@/components/PricingCard'
+import ChannelCategoriesSection from '@/components/ChannelCategories'
+import ChannelSlider from '@/components/ChannelSlider'
 import { Tv, Zap, Globe } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -30,6 +32,63 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Pricing */}
+      <div id="pricing" className="py-24 sm:py-32 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent pointer-events-none" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
+          <div className="mx-auto max-w-2xl sm:text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">{tPricing('title')}</h2>
+            <p className="mt-6 text-lg leading-8 text-gray-300">
+              {tPricing('subtitle')}
+            </p>
+          </div>
+          <div className="mx-auto mt-16 max-w-2xl lg:mx-0 lg:flex lg:max-w-none lg:items-center lg:gap-8">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 w-full">
+              <PricingCard
+                title={`1 ${tPricing('month')}`}
+                price="10"
+                duration={tPricing('month')}
+                features={['1 Device', '4K/FHD Quality', 'Anti-Freeze Technology', '24/7 Support']}
+                ctaText={tPricing('subscribe')}
+              />
+              <PricingCard
+                title={`3 ${tPricing('month')}s`}
+                price="25"
+                duration={`3 ${tPricing('month')}s`}
+                features={['1 Device', '4K/FHD Quality', 'Anti-Freeze Technology', '24/7 Support']}
+                popular={true}
+                ctaText={tPricing('subscribe')}
+              />
+              <PricingCard
+                title={`1 ${tPricing('year')}`}
+                price="70"
+                duration={tPricing('year')}
+                features={['2 Devices', '4K/FHD Quality', 'Anti-Freeze Technology', 'Priority Support']}
+                ctaText={tPricing('subscribe')}
+              />
+            </div>
+          </div>
+
+          {/* Trust Badges */}
+          <div className="mt-16 flex justify-center gap-8 text-slate-400 text-sm font-medium">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-green-500" />
+              Instant Delivery
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-blue-500" />
+              Secure Payment
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-purple-500" />
+              24/7 Support
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ChannelSlider />
 
       {/* Features */}
       <div className="py-24 sm:py-32 bg-slate-900">
@@ -80,43 +139,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Pricing */}
-      <div id="pricing" className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl sm:text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">{tPricing('title')}</h2>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
-              {tPricing('subtitle')}
-            </p>
-          </div>
-          <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none lg:items-center lg:gap-8">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 w-full">
-              <PricingCard
-                title={`1 ${tPricing('month')}`}
-                price="10"
-                duration={tPricing('month')}
-                features={['1 Device', '4K/FHD Quality', 'Anti-Freeze Technology', '24/7 Support']}
-                ctaText={tPricing('subscribe')}
-              />
-              <PricingCard
-                title={`3 ${tPricing('month')}s`}
-                price="25"
-                duration={`3 ${tPricing('month')}s`}
-                features={['1 Device', '4K/FHD Quality', 'Anti-Freeze Technology', '24/7 Support']}
-                popular={true}
-                ctaText={tPricing('subscribe')}
-              />
-              <PricingCard
-                title={`1 ${tPricing('year')}`}
-                price="70"
-                duration={tPricing('year')}
-                features={['2 Devices', '4K/FHD Quality', 'Anti-Freeze Technology', 'Priority Support']}
-                ctaText={tPricing('subscribe')}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <ChannelCategoriesSection />
     </div>
   )
 }
