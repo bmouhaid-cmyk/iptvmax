@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 export default function DashboardProofUpload({ orderId, userId }: { orderId: string, userId: string }) {
     const [isOpen, setIsOpen] = useState(false)
     const [proofFile, setProofFile] = useState<File | null>(null)
-    const [proofType, setProofType] = useState<'file' | 'text'>('file')
+    const [proofType, setProofType] = useState<'file' | 'text'>('text')
     const [proofText, setProofText] = useState('')
     const [uploading, setUploading] = useState(false)
     const router = useRouter()
@@ -90,15 +90,6 @@ export default function DashboardProofUpload({ orderId, userId }: { orderId: str
             <div className="space-y-4">
                 <div className="flex gap-2 mb-2">
                     <button
-                        onClick={() => setProofType('file')}
-                        className={`flex-1 py-1 px-2 rounded text-xs border transition-all ${proofType === 'file'
-                                ? 'bg-blue-600 border-blue-500 text-white'
-                                : 'bg-slate-700 border-slate-600 text-gray-400 hover:bg-slate-600'
-                            }`}
-                    >
-                        Upload File
-                    </button>
-                    <button
                         onClick={() => setProofType('text')}
                         className={`flex-1 py-1 px-2 rounded text-xs border transition-all ${proofType === 'text'
                                 ? 'bg-blue-600 border-blue-500 text-white'
@@ -106,6 +97,15 @@ export default function DashboardProofUpload({ orderId, userId }: { orderId: str
                             }`}
                     >
                         Enter Text
+                    </button>
+                    <button
+                        onClick={() => setProofType('file')}
+                        className={`flex-1 py-1 px-2 rounded text-xs border transition-all ${proofType === 'file'
+                                ? 'bg-blue-600 border-blue-500 text-white'
+                                : 'bg-slate-700 border-slate-600 text-gray-400 hover:bg-slate-600'
+                            }`}
+                    >
+                        Upload File
                     </button>
                 </div>
 

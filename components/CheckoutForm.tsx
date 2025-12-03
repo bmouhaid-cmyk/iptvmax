@@ -14,7 +14,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
     const [showModal, setShowModal] = useState(false)
     const [proofFile, setProofFile] = useState<File | null>(null)
     const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-    const [proofType, setProofType] = useState<'file' | 'text'>('file')
+    const [proofType, setProofType] = useState<'file' | 'text'>('text')
     const [proofText, setProofText] = useState('')
     const [uploading, setUploading] = useState(false)
     const router = useRouter()
@@ -175,15 +175,6 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
 
                 <div className="flex gap-4 mb-4">
                     <button
-                        onClick={() => setProofType('file')}
-                        className={`flex-1 py-2 px-4 rounded-lg border transition-all ${proofType === 'file'
-                            ? 'bg-blue-600 border-blue-500 text-white'
-                            : 'bg-slate-800 border-slate-700 text-gray-400 hover:bg-slate-700'
-                            }`}
-                    >
-                        Upload Screenshot
-                    </button>
-                    <button
                         onClick={() => setProofType('text')}
                         className={`flex-1 py-2 px-4 rounded-lg border transition-all ${proofType === 'text'
                             ? 'bg-blue-600 border-blue-500 text-white'
@@ -191,6 +182,15 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                             }`}
                     >
                         Enter Wallet/Email
+                    </button>
+                    <button
+                        onClick={() => setProofType('file')}
+                        className={`flex-1 py-2 px-4 rounded-lg border transition-all ${proofType === 'file'
+                            ? 'bg-blue-600 border-blue-500 text-white'
+                            : 'bg-slate-800 border-slate-700 text-gray-400 hover:bg-slate-700'
+                            }`}
+                    >
+                        Upload Screenshot
                     </button>
                 </div>
 
