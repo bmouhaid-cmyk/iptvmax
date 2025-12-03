@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 import DashboardProofUpload from '@/components/DashboardProofUpload'
+import DashboardFastBuy from '@/components/DashboardFastBuy'
 
 export default async function Dashboard() {
     const supabase = await createClient()
@@ -24,6 +25,8 @@ export default async function Dashboard() {
             <Navbar />
             <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div className="px-4 py-6 sm:px-0">
+                    <DashboardFastBuy />
+
                     <h1 className="text-3xl font-bold mb-8">My Orders</h1>
 
                     {orders && orders.length > 0 ? (
