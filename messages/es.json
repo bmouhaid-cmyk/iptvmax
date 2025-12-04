@@ -52,6 +52,38 @@
     },
     "Slider": {
         "totalChannels": "+15,000 Canales",
-        "popular": "Canales populares"
+        "popular": "Canales Populares"
+    },
+    "Reviews": {
+        "sectionTitle": "Testimonios",
+        "title": "Confiado por Miles",
+        "review1": "El mejor servicio IPTV que he usado. ¡Sin cortes y una selección increíble!",
+        "review2": "Gran soporte al cliente y la calidad de imagen es cristalina. Muy recomendado.",
+        "review3": "Finalmente encontré un servicio estable para deportes. La instalación fue instantánea."
+    },
+    "FAQ": {
+        "sectionTitle": "FAQ",
+        "title": "Preguntas Frecuentes",
+        "subtitle": "¿Tienes preguntas? Estamos aquí para ayudar.",
+        "q1": {
+            "question": "¿Cómo recibo mis credenciales?",
+            "answer": "Tus credenciales se enviarán a tu correo y se mostrarán en tu panel inmediatamente después del pago."
+        },
+        "q2": {
+            "question": "¿Puedo usar el servicio en múltiples dispositivos?",
+            "answer": "Sí, nuestros planes soportan múltiples dispositivos. El plan de 1 año permite hasta 2 conexiones simultáneas."
+        },
+        "q3": {
+            "question": "¿Ofrecen reembolso?",
+            "answer": "Ofrecemos una garantía de devolución de dinero de 7 días si no estás satisfecho."
+        },
+        "q4": {
+            "question": "¿Qué velocidad de internet necesito?",
+            "answer": "Recomendamos un mínimo de 10 Mbps para HD y 25 Mbps para contenido 4K."
+        },
+        "q5": {
+            "question": "¿Tienen canales para adultos?",
+            "answer": "Sí, tenemos una amplia selección de canales para adultos que pueden protegerse con contraseña."
+        }
     }
 }

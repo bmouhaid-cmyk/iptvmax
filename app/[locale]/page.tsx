@@ -2,6 +2,8 @@ import Navbar from '@/components/Navbar'
 import PricingCard from '@/components/PricingCard'
 import ChannelCategoriesSection from '@/components/ChannelCategories'
 import ChannelSlider from '@/components/ChannelSlider'
+import ReviewsSection from '@/components/ReviewsSection'
+import FAQSection from '@/components/FAQSection'
 import { Tv, Zap, Globe } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -139,7 +141,11 @@ export default function Home() {
         </div>
       </div>
 
+      <ReviewsSection />
+
       <ChannelCategoriesSection />
+
+      <FAQSection />
     </div>
   )
 }
