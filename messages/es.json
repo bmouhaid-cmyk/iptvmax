@@ -18,7 +18,15 @@
         "subtitle": "Elija el plan que se adapte a sus necesidades.",
         "month": "Mes",
         "year": "Año",
-        "subscribe": "Suscribirse"
+        "subscribe": "Suscribirse",
+        "features": {
+            "device1": "1 Dispositivo",
+            "device2": "2 Dispositivos",
+            "quality": "Calidad 4K/FHD",
+            "antifreeze": "Tecnología Anti-Congelación",
+            "support247": "Soporte 24/7",
+            "prioritySupport": "Soporte Prioritario"
+        }
     },
     "Checkout": {
         "title": "Pago",

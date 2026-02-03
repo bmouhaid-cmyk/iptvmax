@@ -18,7 +18,15 @@
         "subtitle": "اختر الخطة التي تناسب احتياجاتك.",
         "month": "شهر",
         "year": "سنة",
-        "subscribe": "اشترك الآن"
+        "subscribe": "اشترك الآن",
+        "features": {
+            "device1": "جهاز واحد",
+            "device2": "جهازين",
+            "quality": "جودة 4K/FHD",
+            "antifreeze": "تقنية ضد التقطيع",
+            "support247": "دعم فني 24/7",
+            "prioritySupport": "دعم ذو أولوية"
+        }
     },
     "Checkout": {
         "title": "الدفع",

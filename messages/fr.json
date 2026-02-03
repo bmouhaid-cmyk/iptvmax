@@ -18,7 +18,15 @@
         "subtitle": "Choisissez le forfait qui vous convient.",
         "month": "Mois",
         "year": "An",
-        "subscribe": "S'abonner"
+        "subscribe": "S'abonner",
+        "features": {
+            "device1": "1 Appareil",
+            "device2": "2 Appareils",
+            "quality": "Qualité 4K/FHD",
+            "antifreeze": "Technologie Anti-Coupure",
+            "support247": "Support 24/7",
+            "prioritySupport": "Support Prioritaire"
+        }
     },
     "Checkout": {
         "title": "Paiement",
@@ -57,7 +65,7 @@
     "Reviews": {
         "sectionTitle": "Témoignages",
         "title": "Approuvé par des Milliers",
-        "review1": "Le meilleur service IPTV que j'ai utilisé. Pas de coupure et une sélection incroyable !",
+        "review1": "Le meilleur service que j'ai utilisé. Pas de coupure et une sélection incroyable !",
         "review2": "Super support client et la qualité d'image est cristalline. Je recommande vivement.",
         "review3": "Enfin un service stable pour le sport. L'installation a été instantanée et facile."
     },

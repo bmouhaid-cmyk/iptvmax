@@ -18,7 +18,15 @@
         "subtitle": "Choose the plan that fits your needs.",
         "month": "Month",
         "year": "Year",
-        "subscribe": "Subscribe Now"
+        "subscribe": "Subscribe Now",
+        "features": {
+            "device1": "1 Device",
+            "device2": "2 Devices",
+            "quality": "4K/FHD Quality",
+            "antifreeze": "Anti-Freeze Technology",
+            "support247": "24/7 Support",
+            "prioritySupport": "Priority Support"
+        }
     },
     "Checkout": {
         "title": "Checkout",

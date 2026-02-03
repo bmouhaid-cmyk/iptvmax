@@ -51,14 +51,24 @@ export default function Home() {
                 title={`1 ${tPricing('month')}`}
                 price="10"
                 duration={tPricing('month')}
-                features={['1 Device', '4K/FHD Quality', 'Anti-Freeze Technology', '24/7 Support']}
+                features={[
+                  tPricing('features.device1'),
+                  tPricing('features.quality'),
+                  tPricing('features.antifreeze'),
+                  tPricing('features.support247')
+                ]}
                 ctaText={tPricing('subscribe')}
               />
               <PricingCard
                 title={`3 ${tPricing('month')}s`}
                 price="25"
                 duration={`3 ${tPricing('month')}s`}
-                features={['1 Device', '4K/FHD Quality', 'Anti-Freeze Technology', '24/7 Support']}
+                features={[
+                  tPricing('features.device1'),
+                  tPricing('features.quality'),
+                  tPricing('features.antifreeze'),
+                  tPricing('features.support247')
+                ]}
                 popular={true}
                 ctaText={tPricing('subscribe')}
               />
@@ -66,7 +76,12 @@ export default function Home() {
                 title={`1 ${tPricing('year')}`}
                 price="70"
                 duration={tPricing('year')}
-                features={['2 Devices', '4K/FHD Quality', 'Anti-Freeze Technology', 'Priority Support']}
+                features={[
+                  tPricing('features.device2'),
+                  tPricing('features.quality'),
+                  tPricing('features.antifreeze'),
+                  tPricing('features.prioritySupport')
+                ]}
                 ctaText={tPricing('subscribe')}
               />
             </div>
