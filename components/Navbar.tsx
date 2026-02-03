@@ -37,15 +37,15 @@ export default function Navbar() {
     return (
         <nav className="bg-slate-900 border-b border-slate-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-24">
+                <div className="flex items-center justify-between h-20">
                     <div className="flex items-center">
                         <Link href="/" className="flex items-center">
                             <Image
                                 src="/logo.png"
                                 alt="tv4watch"
-                                width={240}
-                                height={80}
-                                className="h-20 w-auto object-contain"
+                                width={220}
+                                height={75}
+                                className="h-[72px] w-auto object-contain"
                                 priority
                             />
                         </Link>
