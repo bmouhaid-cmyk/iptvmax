@@ -9,6 +9,7 @@ export default function Signup() {
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
+    const [success, setSuccess] = useState<string | null>(null)
     const router = useRouter()
     const supabase = createClient()
 
@@ -16,6 +17,7 @@ export default function Signup() {
         e.preventDefault()
         setLoading(true)
         setError(null)
+        setSuccess(null)
 
         const { error } = await supabase.auth.signUp({
             email,
@@ -29,13 +31,12 @@ export default function Signup() {
             setError(error.message)
             setLoading(false)
         } else {
-            // Check if session exists (auto-login) or if email confirmation is required
-            // For this demo, we assume auto-login or redirect to dashboard if session is present
-            // But usually signUp returns session null if email confirm is on.
-            // We'll just redirect to login or show a message.
-            // Actually, if email confirm is off, it logs in.
-            router.push('/dashboard')
-            router.refresh()
+            setLoading(false)
+            setSuccess('Registration successful! Please check your email to confirm your account.')
+            // Optional: Redirect after a delay or let the user navigate manually
+            // setTimeout(() => {
+            //     router.push('/login')
+            // }, 3000)
         }
     }
 
@@ -88,6 +89,7 @@ export default function Signup() {
                     </div>
 
                     {error && <div className="text-red-500 text-sm">{error}</div>}
+                    {success && <div className="text-green-500 text-sm">{success}</div>}
 
                     <div>
                         <button
@@ -95,7 +97,7 @@ export default function Signup() {
                             disabled={loading}
                             className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-50"
                         >
-                            {loading ? 'Sign up' : 'Sign up'}
+                            {loading ? 'Signing up...' : 'Sign up'}
                         </button>
                     </div>
                 </form>
