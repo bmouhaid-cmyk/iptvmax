@@ -1,0 +1,32 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../iptvmax-main/app"
+		},
+		{
+			"path": "../iptvmax-main/components"
+		},
+		{
+			"path": "../iptvmax-main/i18n"
+		},
+		{
+			"path": "../iptvmax-main/lib"
+		},
+		{
+			"path": "../iptvmax-main/messages"
+		},
+		{
+			"path": "../iptvmax-main/public"
+		},
+		{
+			"path": "../iptvmax-main/supabase"
+		},
+		{
+			"path": "../iptvmax-main/types"
+		}
+	],
+	"settings": {}
+}

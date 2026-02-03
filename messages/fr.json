@@ -1,0 +1,89 @@
+{
+    "Navbar": {
+        "home": "Accueil",
+        "features": "Fonctionnalités",
+        "pricing": "Tarifs",
+        "login": "Connexion",
+        "dashboard": "Tableau de bord",
+        "logout": "Déconnexion"
+    },
+    "Hero": {
+        "title": "Service IPTV Premium",
+        "subtitle": "Accédez à plus de 10 000 chaînes et contenus VOD en qualité 4K.",
+        "cta": "Commencer",
+        "features": "Voir les fonctionnalités"
+    },
+    "Pricing": {
+        "title": "Tarification Simple",
+        "subtitle": "Choisissez le forfait qui vous convient.",
+        "month": "Mois",
+        "year": "An",
+        "subscribe": "S'abonner"
+    },
+    "Checkout": {
+        "title": "Paiement",
+        "package": "Forfait",
+        "price": "Prix",
+        "paymentMethod": "Méthode de paiement",
+        "payButton": "J'ai effectué le paiement",
+        "processing": "Traitement...",
+        "important": "Important",
+        "instruction": "Veuillez télécharger une capture d'écran de votre paiement ou saisir votre adresse de portefeuille/email ci-dessous pour vérifier votre abonnement.",
+        "modalTitle": "Confirmation de paiement",
+        "modalBody": "Votre preuve de paiement a été reçue ! Nous allons la vérifier et activer votre abonnement sous peu.",
+        "whatsappButton": "Envoyer la preuve sur WhatsApp",
+        "dashboardButton": "Aller au tableau de bord"
+    },
+    "Categories": {
+        "title": "Catégories de chaînes disponibles",
+        "sports": "Chaînes de sport",
+        "movies": "Films et séries",
+        "news": "Chaînes d'information",
+        "kids": "Chaînes pour enfants",
+        "documentary": "Chaînes documentaires",
+        "music": "Chaînes musicales",
+        "streaming": "Plateformes de streaming",
+        "entertainment": "Divertissement",
+        "general": "Chaînes généralistes",
+        "count": "+{count} Chaînes",
+        "more": "Et plus de chaînes !",
+        "sample": "Ceci n'est qu'un échantillon des chaînes disponibles dans la catégorie {category}. Abonnez-vous maintenant pour accéder à toutes les chaînes.",
+        "available": "{count} Chaînes disponibles"
+    },
+    "Slider": {
+        "totalChannels": "+15 000 Chaînes",
+        "popular": "Chaînes populaires"
+    },
+    "Reviews": {
+        "sectionTitle": "Témoignages",
+        "title": "Approuvé par des Milliers",
+        "review1": "Le meilleur service IPTV que j'ai utilisé. Pas de coupure et une sélection incroyable !",
+        "review2": "Super support client et la qualité d'image est cristalline. Je recommande vivement.",
+        "review3": "Enfin un service stable pour le sport. L'installation a été instantanée et facile."
+    },
+    "FAQ": {
+        "sectionTitle": "FAQ",
+        "title": "Questions Fréquemment Posées",
+        "subtitle": "Des questions ? Nous sommes là pour aider.",
+        "q1": {
+            "question": "Comment recevoir mes identifiants ?",
+            "answer": "Vos identifiants seront envoyés par email et affichés sur votre tableau de bord immédiatement après confirmation du paiement."
+        },
+        "q2": {
+            "question": "Puis-je utiliser le service sur plusieurs appareils ?",
+            "answer": "Oui, nos forfaits supportent plusieurs appareils. Le forfait 1 an permet jusqu'à 2 connexions simultanées."
+        },
+        "q3": {
+            "question": "Offrez-vous un remboursement ?",
+            "answer": "Nous offrons une garantie de remboursement de 7 jours si vous n'êtes pas satisfait."
+        },
+        "q4": {
+            "question": "Quelle vitesse internet est nécessaire ?",
+            "answer": "Nous recommandons un minimum de 10 Mbps pour la HD et 25 Mbps pour la 4K."
+        },
+        "q5": {
+            "question": "Avez-vous des chaînes adultes ?",
+            "answer": "Oui, nous avons une large sélection de chaînes adultes qui peuvent être protégées par mot de passe."
+        }
+    }
+}

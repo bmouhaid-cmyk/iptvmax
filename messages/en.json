@@ -1,0 +1,89 @@
+{
+    "Navbar": {
+        "home": "Home",
+        "features": "Features",
+        "pricing": "Pricing",
+        "login": "Login",
+        "dashboard": "Dashboard",
+        "logout": "Logout"
+    },
+    "Hero": {
+        "title": "Premium IPTV Service",
+        "subtitle": "Access over 10,000 channels and VOD content in 4K quality.",
+        "cta": "Get Started",
+        "features": "View Features"
+    },
+    "Pricing": {
+        "title": "Simple Pricing",
+        "subtitle": "Choose the plan that fits your needs.",
+        "month": "Month",
+        "year": "Year",
+        "subscribe": "Subscribe Now"
+    },
+    "Checkout": {
+        "title": "Checkout",
+        "package": "Package",
+        "price": "Price",
+        "paymentMethod": "Payment Method",
+        "payButton": "I Have Made The Payment",
+        "processing": "Processing...",
+        "important": "Important",
+        "instruction": "Please upload a screenshot of your payment or enter your wallet address/email below to verify your subscription.",
+        "modalTitle": "Payment Confirmation",
+        "modalBody": "Your payment proof has been received! We will verify it and activate your subscription shortly.",
+        "whatsappButton": "Send Proof on WhatsApp",
+        "dashboardButton": "Go to Dashboard"
+    },
+    "Categories": {
+        "title": "Available Channel Categories",
+        "sports": "Sports Channels",
+        "movies": "Movies & Series",
+        "news": "News Channels",
+        "kids": "Kids Channels",
+        "documentary": "Documentary Channels",
+        "music": "Music Channels",
+        "streaming": "Streaming Platforms",
+        "entertainment": "Entertainment",
+        "general": "General Channels",
+        "count": "{count}+ Channels",
+        "more": "And more channels!",
+        "sample": "This is just a sample of the channels available in the {category} category. Subscribe now to access all channels.",
+        "available": "{count} Channels Available"
+    },
+    "Slider": {
+        "totalChannels": "+15,000 Channels",
+        "popular": "Popular Channels"
+    },
+    "Reviews": {
+        "sectionTitle": "Testimonials",
+        "title": "Trusted by Thousands",
+        "review1": "The best IPTV service I've ever used. No buffering and amazing channel selection!",
+        "review2": "Great customer support and the picture quality is crystal clear. Highly recommended.",
+        "review3": "Finally found a stable service for sports. Setup was instant and easy."
+    },
+    "FAQ": {
+        "sectionTitle": "FAQ",
+        "title": "Frequently Asked Questions",
+        "subtitle": "Have questions? We're here to help.",
+        "q1": {
+            "question": "How do I receive my credentials?",
+            "answer": "Your credentials will be sent to your email and displayed on your dashboard immediately after payment confirmation."
+        },
+        "q2": {
+            "question": "Can I use the service on multiple devices?",
+            "answer": "Yes, our plans support multiple devices. The 1-year plan allows up to 2 simultaneous connections."
+        },
+        "q3": {
+            "question": "Do you offer a refund?",
+            "answer": "We offer a 7-day money-back guarantee if you are not satisfied with our service."
+        },
+        "q4": {
+            "question": "What internet speed do I need?",
+            "answer": "We recommend a minimum of 10 Mbps for HD content and 25 Mbps for 4K content."
+        },
+        "q5": {
+            "question": "Do you have adult channels?",
+            "answer": "Yes, we have a wide selection of adult channels which can be password protected."
+        }
+    }
+}

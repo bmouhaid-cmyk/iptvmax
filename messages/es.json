@@ -1,0 +1,89 @@
+{
+    "Navbar": {
+        "home": "Inicio",
+        "features": "Características",
+        "pricing": "Precios",
+        "login": "Iniciar sesión",
+        "dashboard": "Panel",
+        "logout": "Cerrar sesión"
+    },
+    "Hero": {
+        "title": "Servicio IPTV Premium",
+        "subtitle": "Acceda a más de 10,000 canales y contenido VOD en calidad 4K.",
+        "cta": "Empezar",
+        "features": "Ver características"
+    },
+    "Pricing": {
+        "title": "Precios Simples",
+        "subtitle": "Elija el plan que se adapte a sus necesidades.",
+        "month": "Mes",
+        "year": "Año",
+        "subscribe": "Suscribirse"
+    },
+    "Checkout": {
+        "title": "Pago",
+        "package": "Paquete",
+        "price": "Precio",
+        "paymentMethod": "Método de pago",
+        "payButton": "He realizado el pago",
+        "processing": "Procesando...",
+        "important": "Importante",
+        "instruction": "Por favor, suba una captura de pantalla de su pago o ingrese su dirección de billetera/correo electrónico a continuación para verificar su suscripción.",
+        "modalTitle": "Confirmación de pago",
+        "modalBody": "¡Se ha recibido su comprobante de pago! Lo verificaremos y activaremos su suscripción en breve.",
+        "whatsappButton": "Enviar prueba por WhatsApp",
+        "dashboardButton": "Ir al panel"
+    },
+    "Categories": {
+        "title": "Categorías de canales disponibles",
+        "sports": "Canales de deportes",
+        "movies": "Películas y series",
+        "news": "Canales de noticias",
+        "kids": "Canales para niños",
+        "documentary": "Canales documentales",
+        "music": "Canales de música",
+        "streaming": "Plataformas de streaming",
+        "entertainment": "Entretenimiento",
+        "general": "Canales generales",
+        "count": "+{count} Canales",
+        "more": "¡Y más canales!",
+        "sample": "Esto es solo una muestra de los canales disponibles en la categoría {category}. Suscríbase ahora para acceder a todos los canales.",
+        "available": "{count} Canales disponibles"
+    },
+    "Slider": {
+        "totalChannels": "+15,000 Canales",
+        "popular": "Canales Populares"
+    },
+    "Reviews": {
+        "sectionTitle": "Testimonios",
+        "title": "Confiado por Miles",
+        "review1": "El mejor servicio IPTV que he usado. ¡Sin cortes y una selección increíble!",
+        "review2": "Gran soporte al cliente y la calidad de imagen es cristalina. Muy recomendado.",
+        "review3": "Finalmente encontré un servicio estable para deportes. La instalación fue instantánea."
+    },
+    "FAQ": {
+        "sectionTitle": "FAQ",
+        "title": "Preguntas Frecuentes",
+        "subtitle": "¿Tienes preguntas? Estamos aquí para ayudar.",
+        "q1": {
+            "question": "¿Cómo recibo mis credenciales?",
+            "answer": "Tus credenciales se enviarán a tu correo y se mostrarán en tu panel inmediatamente después del pago."
+        },
+        "q2": {
+            "question": "¿Puedo usar el servicio en múltiples dispositivos?",
+            "answer": "Sí, nuestros planes soportan múltiples dispositivos. El plan de 1 año permite hasta 2 conexiones simultáneas."
+        },
+        "q3": {
+            "question": "¿Ofrecen reembolso?",
+            "answer": "Ofrecemos una garantía de devolución de dinero de 7 días si no estás satisfecho."
+        },
+        "q4": {
+            "question": "¿Qué velocidad de internet necesito?",
+            "answer": "Recomendamos un mínimo de 10 Mbps para HD y 25 Mbps para contenido 4K."
+        },
+        "q5": {
+            "question": "¿Tienen canales para adultos?",
+            "answer": "Sí, tenemos una amplia selección de canales para adultos que pueden protegerse con contraseña."
+        }
+    }
+}
