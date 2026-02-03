@@ -43,9 +43,9 @@ export default function Navbar() {
                             <Image
                                 src="/logo.png"
                                 alt="tv4watch"
-                                width={160}
-                                height={45}
-                                className="h-10 w-auto object-contain"
+                                width={180}
+                                height={50}
+                                className="h-14 w-auto object-contain"
                                 priority
                             />
                         </Link>
