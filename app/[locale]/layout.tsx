@@ -9,8 +9,8 @@ import ChatWidget from '@/components/ChatWidget'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Premium IPTV Store - 10,000+ Channels in 4K/FHD',
-  description: 'Get the best IPTV service with over 10,000 channels, movies, and series. Instant delivery, anti-freeze technology, and 24/7 support.',
+  title: 'tv4watch - 10,000+ Channels in 4K/FHD',
+  description: 'Get the best tv4watch service with over 10,000 channels, movies, and series. Instant delivery, anti-freeze technology, and 24/7 support.',
 }
 
 export default async function LocaleLayout({

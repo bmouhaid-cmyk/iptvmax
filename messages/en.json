@@ -8,7 +8,7 @@
         "logout": "Logout"
     },
     "Hero": {
-        "title": "Premium IPTV Service",
+        "title": "Premium tv4watch Service",
         "subtitle": "Access over 10,000 channels and VOD content in 4K quality.",
         "cta": "Get Started",
         "features": "View Features"
@@ -57,7 +57,7 @@
     "Reviews": {
         "sectionTitle": "Testimonials",
         "title": "Trusted by Thousands",
-        "review1": "The best IPTV service I've ever used. No buffering and amazing channel selection!",
+        "review1": "The best service I've ever used. No buffering and amazing channel selection!",
         "review2": "Great customer support and the picture quality is crystal clear. Highly recommended.",
         "review3": "Finally found a stable service for sports. Setup was instant and easy."
     },
