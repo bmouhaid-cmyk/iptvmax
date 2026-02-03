@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { User } from '@supabase/supabase-js'
 import { LogOut, Menu, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 import LanguageSwitcher from './LanguageSwitcher'
 
 export default function Navbar() {
@@ -37,10 +38,6 @@ export default function Navbar() {
         <nav className="bg-slate-900 border-b border-slate-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
-                    import Image from 'next/image'
-
-                    // ... existing imports
-
                     <div className="flex items-center">
                         <Link href="/" className="flex items-center">
                             <Image
