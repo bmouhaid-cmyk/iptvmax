@@ -7,6 +7,12 @@
         "dashboard": "Dashboard",
         "logout": "Logout"
     },
+    "Confirmation": {
+        "title": "Email Verified!",
+        "description": "Your account has been successfully verified. You can now access your dashboard.",
+        "loginButton": "Login to Account",
+        "backHome": "Back to Home"
+    },
     "Hero": {
         "title": "Premium tv4watch Service",
         "subtitle": "Access over 10,000 channels and VOD content in 4K quality.",
