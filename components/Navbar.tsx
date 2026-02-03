@@ -37,9 +37,20 @@ export default function Navbar() {
         <nav className="bg-slate-900 border-b border-slate-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
+                    import Image from 'next/image'
+
+                    // ... existing imports
+
                     <div className="flex items-center">
-                        <Link href="/" className="text-xl font-bold text-white">
-                            tv4watch
+                        <Link href="/" className="flex items-center">
+                            <Image
+                                src="/logo.png"
+                                alt="tv4watch"
+                                width={160}
+                                height={45}
+                                className="h-10 w-auto object-contain"
+                                priority
+                            />
                         </Link>
                     </div>
                     <div className="hidden md:block">
