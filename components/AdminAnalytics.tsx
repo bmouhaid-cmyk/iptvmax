@@ -2,8 +2,11 @@
 
 import { BarChart3, Clock, CreditCard, Package, CheckCircle2, DollarSign, TrendingUp } from 'lucide-react'
 import { PRICING_PLANS } from '@/lib/constants'
+import { useCurrency } from '@/context/CurrencyContext'
 
 export default function AdminAnalytics({ orders }: { orders: any[] }) {
+    const { currency, symbol } = useCurrency()
+
     if (!orders) return null
 
     const totalOrders = orders.length
@@ -25,9 +28,10 @@ export default function AdminAnalytics({ orders }: { orders: any[] }) {
     }, {})
 
     // Calculate Estimated Revenue
-    // Map package title to price
+    // Map package title to price for selected currency
     const priceMap = PRICING_PLANS.reduce((acc: any, plan) => {
-        acc[plan.title] = parseFloat(plan.price)
+        // @ts-ignore
+        acc[plan.title] = parseFloat((plan as any).prices?.[currency] || plan.price)
         return acc
     }, {})
 
@@ -98,7 +102,9 @@ export default function AdminAnalytics({ orders }: { orders: any[] }) {
                         </div>
                     </div>
                     <div className="flex items-baseline">
-                        <span className="text-3xl font-bold text-white">€{pendingRevenue.toFixed(2)}</span>
+                        <span className="text-3xl font-bold text-white max-w-full truncate" title={`${symbol}${pendingRevenue.toFixed(2)}`}>
+                            {symbol}{pendingRevenue.toFixed(2)}
+                        </span>
                         <span className="ml-2 text-xs text-gray-500">potential</span>
                     </div>
                 </div>
@@ -111,7 +117,9 @@ export default function AdminAnalytics({ orders }: { orders: any[] }) {
                         </div>
                     </div>
                     <div className="flex items-baseline">
-                        <span className="text-3xl font-bold text-white">€{totalRevenue.toFixed(2)}</span>
+                        <span className="text-3xl font-bold text-white max-w-full truncate" title={`${symbol}${totalRevenue.toFixed(2)}`}>
+                            {symbol}{totalRevenue.toFixed(2)}
+                        </span>
                         <span className="ml-2 text-xs text-gray-500">realized</span>
                     </div>
                 </div>
