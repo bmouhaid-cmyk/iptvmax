@@ -58,7 +58,21 @@
         "modalTitle": "Payment Confirmation",
         "modalBody": "Your payment proof has been received! We will verify it and activate your subscription shortly.",
         "whatsappButton": "Send Proof on WhatsApp",
-        "dashboardButton": "Go to Dashboard"
+        "dashboardButton": "Go to Dashboard",
+        "orderSummary": "Order Summary",
+        "subscription": "Subscription",
+        "paypal": "PayPal",
+        "crypto": "Crypto (USDT)",
+        "sendPaymentTo": "Send payment to:",
+        "sendUsdtTo": "Send USDT (TRC20) to:",
+        "paymentProof": "Payment Proof",
+        "enterWalletEmail": "Enter Wallet/Email",
+        "uploadScreenshot": "Upload Screenshot",
+        "clickToUpload": "Click to upload screenshot",
+        "paypalEmail": "PayPal Email Address",
+        "walletAddress": "Wallet Address / Transaction ID",
+        "cancel": "Cancel",
+        "copied": "Copied!"
     },
     "Categories": {
         "title": "Available Channel Categories",

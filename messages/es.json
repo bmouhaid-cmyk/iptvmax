@@ -58,7 +58,21 @@
         "modalTitle": "Confirmación de pago",
         "modalBody": "¡Se ha recibido su comprobante de pago! Lo verificaremos y activaremos su suscripción en breve.",
         "whatsappButton": "Enviar prueba por WhatsApp",
-        "dashboardButton": "Ir al panel"
+        "dashboardButton": "Ir al panel",
+        "orderSummary": "Resumen del Pedido",
+        "subscription": "Suscripción",
+        "paypal": "PayPal",
+        "crypto": "Cripto (USDT)",
+        "sendPaymentTo": "Enviar pago a:",
+        "sendUsdtTo": "Enviar USDT (TRC20) a:",
+        "paymentProof": "Comprobante de pago",
+        "enterWalletEmail": "Ingresar Billetera/Email",
+        "uploadScreenshot": "Subir Captura de Pantalla",
+        "clickToUpload": "Clic para subir captura",
+        "paypalEmail": "Dirección de Email de PayPal",
+        "walletAddress": "Dirección de Billetera / ID de Transacción",
+        "cancel": "Cancelar",
+        "copied": "¡Copiado!"
     },
     "Categories": {
         "title": "Categorías de canales disponibles",

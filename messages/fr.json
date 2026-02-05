@@ -58,7 +58,21 @@
         "modalTitle": "Confirmation de paiement",
         "modalBody": "Votre preuve de paiement a été reçue ! Nous allons la vérifier et activer votre abonnement sous peu.",
         "whatsappButton": "Envoyer la preuve sur WhatsApp",
-        "dashboardButton": "Aller au tableau de bord"
+        "dashboardButton": "Aller au tableau de bord",
+        "orderSummary": "Récapitulatif de la commande",
+        "subscription": "Abonnement",
+        "paypal": "PayPal",
+        "crypto": "Crypto (USDT)",
+        "sendPaymentTo": "Envoyer le paiement à :",
+        "sendUsdtTo": "Envoyer USDT (TRC20) à :",
+        "paymentProof": "Preuve de paiement",
+        "enterWalletEmail": "Entrer Portefeuille/Email",
+        "uploadScreenshot": "Télécharger Capture d'écran",
+        "clickToUpload": "Cliquez pour télécharger",
+        "paypalEmail": "Adresse Email PayPal",
+        "walletAddress": "Adresse Portefeuille / ID Transaction",
+        "cancel": "Annuler",
+        "copied": "Copié !"
     },
     "Categories": {
         "title": "Catégories de chaînes disponibles",

@@ -58,7 +58,21 @@
         "modalTitle": "تأكيد الدفع",
         "modalBody": "تم استلام إثبات الدفع الخاص بك! سنقوم بالتحقق منه وتفعيل اشتراكك قريبا.",
         "whatsappButton": "إرسال الإثبات عبر واتساب",
-        "dashboardButton": "الذهاب إلى لوحة التحكم"
+        "dashboardButton": "الذهاب إلى لوحة التحكم",
+        "orderSummary": "ملخص الطلب",
+        "subscription": "اشتراك",
+        "paypal": "باي بال",
+        "crypto": "عملات رقمية (USDT)",
+        "sendPaymentTo": "إرسال الدفع إلى:",
+        "sendUsdtTo": "إرسال USDT (TRC20) إلى:",
+        "paymentProof": "إثبات الدفع",
+        "enterWalletEmail": "أدخل المحفظة/البريد",
+        "uploadScreenshot": "تحميل لقطة شاشة",
+        "clickToUpload": "انقر لتحميل لقطة شاشة",
+        "paypalEmail": "بريد PayPal الإلكتروني",
+        "walletAddress": "عنوان المحفظة / معرف المعاملة",
+        "cancel": "إلغاء",
+        "copied": "تم النسخ!"
     },
     "Categories": {
         "title": "فئات القنوات المتاحة",

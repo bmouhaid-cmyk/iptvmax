@@ -47,9 +47,9 @@ export default async function CheckoutPage({
                 <h2 className="text-2xl font-bold mb-6 text-center">{t('title')}</h2>
 
                 <div className="mb-8 p-4 bg-slate-800 rounded-lg border border-slate-700">
-                    <h3 className="text-lg font-semibold mb-2">Order Summary</h3>
+                    <h3 className="text-lg font-semibold mb-2">{t('orderSummary')}</h3>
                     <div className="flex justify-between items-center">
-                        <span className="capitalize">{packageType} Subscription</span>
+                        <span className="capitalize">{packageType} {t('subscription')}</span>
                         <span className="font-bold text-xl">{symbol}{price}</span>
                     </div>
                 </div>

@@ -123,7 +123,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                         : 'border-slate-700 hover:border-slate-600'
                         }`}
                 >
-                    <div className="font-semibold">PayPal</div>
+                    <div className="font-semibold">{t('paypal')}</div>
                 </button>
                 <button
                     onClick={() => setPaymentMethod('crypto')}
@@ -132,7 +132,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                         : 'border-slate-700 hover:border-slate-600'
                         }`}
                 >
-                    <div className="font-semibold">Crypto (USDT)</div>
+                    <div className="font-semibold">{t('crypto')}</div>
                 </button>
             </div>
 
@@ -140,27 +140,27 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
             <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
                 {paymentMethod === 'paypal' ? (
                     <div>
-                        <p className="text-sm text-gray-400 mb-2">Send payment to:</p>
+                        <p className="text-sm text-gray-400 mb-2">{t('sendPaymentTo')}</p>
                         <div className="flex items-center justify-between bg-slate-900 p-3 rounded">
                             <code className="text-blue-400">paypal@example.com</code>
                             <button
                                 onClick={() => handleCopy('paypal@example.com')}
                                 className="text-sm text-gray-400 hover:text-white"
                             >
-                                {copied ? 'Copied!' : 'Copy'}
+                                {copied ? t('copied') : 'Copy'}
                             </button>
                         </div>
                     </div>
                 ) : (
                     <div>
-                        <p className="text-sm text-gray-400 mb-2">Send USDT (TRC20) to:</p>
+                        <p className="text-sm text-gray-400 mb-2">{t('sendUsdtTo')}</p>
                         <div className="flex items-center justify-between bg-slate-900 p-3 rounded">
                             <code className="text-green-400 text-sm break-all">T9yD14Nj9j7xAB4dbGeiX9h8b...</code>
                             <button
                                 onClick={() => handleCopy('T9yD14Nj9j7xAB4dbGeiX9h8b...')}
                                 className="text-sm text-gray-400 hover:text-white ml-2"
                             >
-                                {copied ? 'Copied!' : 'Copy'}
+                                {copied ? t('copied') : 'Copy'}
                             </button>
                         </div>
                     </div>
@@ -170,7 +170,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
             {/* Upload Section */}
             <div className="space-y-4">
                 <label className="block text-sm font-medium text-gray-300">
-                    Payment Proof
+                    {t('paymentProof')}
                 </label>
 
                 <div className="flex gap-4 mb-4">
@@ -181,7 +181,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                             : 'bg-slate-800 border-slate-700 text-gray-400 hover:bg-slate-700'
                             }`}
                     >
-                        Enter Wallet/Email
+                        {t('enterWalletEmail')}
                     </button>
                     <button
                         onClick={() => setProofType('file')}
@@ -190,7 +190,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                             : 'bg-slate-800 border-slate-700 text-gray-400 hover:bg-slate-700'
                             }`}
                     >
-                        Upload Screenshot
+                        {t('uploadScreenshot')}
                     </button>
                 </div>
 
@@ -205,7 +205,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                             />
                             <div className="text-center">
                                 <Upload className="mx-auto h-10 w-10 text-gray-400 mb-3" />
-                                <p className="text-sm text-gray-300 font-medium">Click to upload screenshot</p>
+                                <p className="text-sm text-gray-300 font-medium">{t('clickToUpload')}</p>
                                 <p className="text-xs text-gray-500 mt-1">PNG, JPG up to 5MB</p>
                             </div>
                         </div>
@@ -235,7 +235,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                 ) : (
                     <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
                         <label className="block text-sm text-gray-400 mb-2">
-                            {paymentMethod === 'paypal' ? 'PayPal Email Address' : 'Wallet Address / Transaction ID'}
+                            {paymentMethod === 'paypal' ? t('paypalEmail') : t('walletAddress')}
                         </label>
                         <input
                             type="text"
@@ -277,7 +277,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                     onClick={() => router.push('/')}
                     className="w-full bg-slate-800 hover:bg-slate-700 text-gray-300 font-semibold py-3 rounded-lg transition-colors"
                 >
-                    Cancel
+                    {t('cancel')}
                 </button>
             </div>
 
