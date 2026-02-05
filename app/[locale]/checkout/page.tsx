@@ -8,7 +8,7 @@ export default async function CheckoutPage({
     searchParams,
     params
 }: {
-    searchParams: Promise<{ package?: string }>
+    searchParams: Promise<{ package?: string; currency?: string }>
     params: Promise<{ locale: string }>
 }) {
     const supabase = await createClient()
