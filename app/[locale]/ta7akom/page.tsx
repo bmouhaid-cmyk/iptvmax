@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 import AdminOrderRow from '@/components/AdminOrderRow'
+import AdminAnalytics from '@/components/AdminAnalytics'
 
 export default async function AdminDashboard() {
     const supabase = await createClient()
@@ -44,6 +45,8 @@ export default async function AdminDashboard() {
             <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div className="px-4 py-6 sm:px-0">
                     <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
+
+                    <AdminAnalytics orders={orders} />
 
                     <div className="bg-slate-900 shadow overflow-hidden sm:rounded-lg border border-slate-800">
                         <div className="px-4 py-5 sm:px-6">
