@@ -221,13 +221,18 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                     <div>
                         <p className="text-sm text-gray-400 mb-2">{t('sendUsdtTo')}</p>
                         <div className="flex items-center justify-between bg-slate-900 p-3 rounded">
-                            <code className="text-green-400 text-sm break-all">T9yD14Nj9j7xAB4dbGeiX9h8b...</code>
+                            <code className="text-green-400 text-sm break-all font-mono">
+                                TNPWVxbBxccyK6MiJmWZXHh6Xy7Qph8xjc
+                            </code>
                             <button
-                                onClick={() => handleCopy('T9yD14Nj9j7xAB4dbGeiX9h8b...')}
+                                onClick={() => handleCopy('TNPWVxbBxccyK6MiJmWZXHh6Xy7Qph8xjc')}
                                 className="text-sm text-gray-400 hover:text-white ml-2"
                             >
                                 {copied ? t('copied') : 'Copy'}
                             </button>
+                        </div>
+                        <div className="mt-2 text-xs font-bold text-amber-500 bg-amber-500/10 p-2 rounded border border-amber-500/20 text-center">
+                            ⚠️ {t('trc20_warning')}
                         </div>
                     </div>
                 )}

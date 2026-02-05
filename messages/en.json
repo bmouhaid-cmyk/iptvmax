@@ -65,6 +65,7 @@
         "crypto": "Crypto (USDT)",
         "sendPaymentTo": "Send payment to:",
         "sendUsdtTo": "Send USDT (TRC20) to:",
+        "trc20_warning": "IMPORTANT: You must send USDT via the TRC20 network only. Sending via other networks will result in permanent loss.",
         "paymentProof": "Payment Proof",
         "enterWalletEmail": "Enter Wallet/Email",
         "uploadScreenshot": "Upload Screenshot",
