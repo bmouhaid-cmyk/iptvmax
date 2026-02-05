@@ -1,10 +1,14 @@
+"use client"
+
 import { Link } from '@/i18n/routing'
 import { PRICING_PLANS } from '@/lib/constants'
 import { Check, Zap } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useCurrency } from '@/context/CurrencyContext'
 
 export default function DashboardFastBuy() {
     const t = useTranslations('Pricing')
+    const { currency, symbol } = useCurrency()
 
     const getFeatures = (id: string) => {
         const common = [
@@ -72,7 +76,7 @@ export default function DashboardFastBuy() {
                             <div>
                                 <h3 className="text-lg font-semibold text-white">{getTitle(plan.id)}</h3>
                                 <div className="flex items-baseline gap-1 mt-1">
-                                    <span className="text-2xl font-bold text-white">€{plan.price}</span>
+                                    <span className="text-2xl font-bold text-white">{symbol}{(plan as any).prices?.[currency] || plan.price}</span>
                                     <span className="text-sm text-gray-400">/{getDuration(plan.id)}</span>
                                 </div>
                             </div>
@@ -88,7 +92,7 @@ export default function DashboardFastBuy() {
                         </ul>
 
                         <Link
-                            href={`/checkout?package=${plan.linkParam}`}
+                            href={`/checkout?package=${plan.linkParam}&currency=${currency}`}
                             className={`block w-full py-2.5 px-4 rounded-lg text-center font-semibold text-sm transition-colors ${plan.popular
                                 ? 'bg-blue-600 hover:bg-blue-500 text-white'
                                 : 'bg-slate-700 hover:bg-slate-600 text-white'

@@ -16,10 +16,10 @@ export default async function CheckoutPage({
     const { locale } = await params
     const t = await getTranslations({ locale, namespace: 'Checkout' })
 
-    const { package: pkg } = await searchParams
+    const { package: pkg, currency: currencyParam } = await searchParams
 
     if (!user) {
-        redirect({ href: `/login?next=/checkout?package=${pkg ?? ''}`, locale })
+        redirect({ href: `/login?next=/checkout?package=${pkg ?? ''}&currency=${currencyParam ?? ''}`, locale })
     }
 
     // Find the plan from constants
@@ -27,8 +27,19 @@ export default async function CheckoutPage({
     // Actually better to defaults to safe value
     const selectedPlan = PRICING_PLANS.find(p => p.linkParam === pkg) || PRICING_PLANS[0]
 
+    const currency = (currencyParam as 'EUR' | 'USD' | 'MAD' | 'USDT') || 'EUR'
     const packageType = selectedPlan.title
-    const price = selectedPlan.price
+
+    // Get price for selected currency
+    const price = (selectedPlan as any).prices?.[currency] || selectedPlan.price
+
+    const symbols: Record<string, string> = {
+        EUR: '€',
+        USD: '$',
+        MAD: 'Dh',
+        USDT: '₮'
+    }
+    const symbol = symbols[currency] || '€'
 
     return (
         <div className="min-h-screen bg-slate-950 text-white py-12 px-4 sm:px-6 lg:px-8">
@@ -39,7 +50,7 @@ export default async function CheckoutPage({
                     <h3 className="text-lg font-semibold mb-2">Order Summary</h3>
                     <div className="flex justify-between items-center">
                         <span className="capitalize">{packageType} Subscription</span>
-                        <span className="font-bold text-xl">€{price}</span>
+                        <span className="font-bold text-xl">{symbol}{price}</span>
                     </div>
                 </div>
 

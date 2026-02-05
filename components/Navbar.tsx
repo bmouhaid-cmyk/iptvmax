@@ -7,6 +7,7 @@ import { LogOut, Menu, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import LanguageSwitcher from './LanguageSwitcher'
+import CurrencySwitcher from './CurrencySwitcher'
 
 export default function Navbar() {
     const t = useTranslations('Navbar')
@@ -68,7 +69,9 @@ export default function Navbar() {
                                 <Link href="/login" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
                                     {t('login')}
                                 </Link>
+
                             )}
+                            <CurrencySwitcher />
                             <LanguageSwitcher />
                         </div>
                     </div>
@@ -84,32 +87,34 @@ export default function Navbar() {
                 </div>
             </div>
             {/* Mobile Menu */}
-            {isOpen && (
-                <div className="md:hidden">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <Link href="/#pricing" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                            {t('pricing')}
-                        </Link>
-                        {user ? (
-                            <>
-                                <Link href="/dashboard" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                                    {t('dashboard')}
-                                </Link>
-                                <button onClick={handleLogout} className="text-gray-300 hover:text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium">
-                                    {t('logout')}
-                                </button>
-                            </>
-                        ) : (
-                            <Link href="/login" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                                {t('login')}
+            {
+                isOpen && (
+                    <div className="md:hidden">
+                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                            <Link href="/#pricing" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                                {t('pricing')}
                             </Link>
-                        )}
-                        <div className="px-3 py-2">
-                            <LanguageSwitcher />
+                            {user ? (
+                                <>
+                                    <Link href="/dashboard" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                                        {t('dashboard')}
+                                    </Link>
+                                    <button onClick={handleLogout} className="text-gray-300 hover:text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium">
+                                        {t('logout')}
+                                    </button>
+                                </>
+                            ) : (
+                                <Link href="/login" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
+                                    {t('login')}
+                                </Link>
+                            )}
+                            <div className="px-3 py-2">
+                                <LanguageSwitcher />
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
-        </nav>
+                )
+            }
+        </nav >
     )
 }

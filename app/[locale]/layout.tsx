@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing';
 import { Inter } from 'next/font/google'
 import '../globals.css'
 import ChatWidget from '@/components/ChatWidget'
+import { CurrencyProvider } from '@/context/CurrencyContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -37,7 +38,10 @@ export default async function LocaleLayout({
     <html lang={locale} dir={dir} suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <CurrencyProvider>
+            {children}
+
+          </CurrencyProvider>
           <ChatWidget />
         </NextIntlClientProvider>
       </body>
