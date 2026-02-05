@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 export async function POST(request: Request) {
     try {
         const supabase = await createClient()
-        const { userId, packageType, paymentMethod, paymentProofUrl, paymentProofText } = await request.json()
+        const { userId, packageType, paymentMethod, paymentProofUrl, paymentProofText, device } = await request.json()
 
         // Ensure profile exists
         const { data: profile } = await supabase.from('profiles').select('id').eq('id', userId).single()
@@ -22,6 +22,7 @@ export async function POST(request: Request) {
             payment_method: paymentMethod,
             payment_proof_url: paymentProofUrl,
             payment_proof_text: paymentProofText,
+            device_type: device // Mapping 'device' from frontend to 'device_type' in DB (assuming column name)
         } as any).select()
 
         if (error) throw error

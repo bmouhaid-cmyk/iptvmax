@@ -72,7 +72,17 @@
         "paypalEmail": "Dirección de Email de PayPal",
         "walletAddress": "Dirección de Billetera / ID de Transacción",
         "cancel": "Cancelar",
-        "copied": "¡Copiado!"
+        "copied": "¡Copiado!",
+        "deviceType": "Tipo de Dispositivo",
+        "chooseDevice": "Elige tu dispositivo",
+        "smartTv": "Smart TV",
+        "android": "Android",
+        "samsung": "Samsung",
+        "lg": "LG",
+        "appleTv": "Apple TV",
+        "androidTv": "Android TV",
+        "tvBox": "TV Box",
+        "mobile": "Tableta / Teléfono"
     },
     "Categories": {
         "title": "Categorías de canales disponibles",

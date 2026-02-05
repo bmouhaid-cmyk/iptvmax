@@ -17,7 +17,14 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
     const [proofType, setProofType] = useState<'file' | 'text'>('text')
     const [proofText, setProofText] = useState('')
     const [uploading, setUploading] = useState(false)
+    const [device, setDevice] = useState('')
+    const [deviceCategory, setDeviceCategory] = useState('')
     const router = useRouter()
+
+    const deviceOptions = {
+        smartTv: ['Samsung', 'LG', 'Apple TV'],
+        android: ['Android TV', 'TV Box', 'Tablet / Phone']
+    }
 
     const handleCopy = (text: string) => {
         navigator.clipboard.writeText(text)
@@ -40,6 +47,10 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
     }
 
     const handleSubmit = async () => {
+        if (!device) {
+            alert('Please select your device type.')
+            return
+        }
         if (proofType === 'file' && !proofFile) {
             alert('Please upload a payment proof screenshot.')
             return
@@ -51,7 +62,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
 
         setLoading(true)
         setUploading(true)
-        console.log('Submitting order...', { userId, packageType, paymentMethod })
+        console.log('Submitting order...', { userId, packageType, paymentMethod, device })
 
         try {
             let publicUrl = null
@@ -90,7 +101,8 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                     packageType,
                     paymentMethod,
                     paymentProofUrl: publicUrl,
-                    paymentProofText: proofType === 'text' ? proofText : null
+                    paymentProofText: proofType === 'text' ? proofText : null,
+                    device
                 }),
             })
 
@@ -115,6 +127,60 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
 
     return (
         <div className="space-y-6">
+            {/* Device Selection */}
+            <div className="space-y-4">
+                <label className="block text-sm font-medium text-gray-300">
+                    {t('deviceType')}
+                </label>
+                <div className="grid grid-cols-2 gap-4 mb-4">
+                    <button
+                        onClick={() => { setDeviceCategory('smartTv'); setDevice('') }}
+                        className={`p-4 rounded-lg border-2 transition-all ${deviceCategory === 'smartTv'
+                            ? 'border-blue-500 bg-blue-500/10'
+                            : 'border-slate-700 hover:border-slate-600'
+                            }`}
+                    >
+                        <div className="font-semibold">{t('smartTv')}</div>
+                    </button>
+                    <button
+                        onClick={() => { setDeviceCategory('android'); setDevice('') }}
+                        className={`p-4 rounded-lg border-2 transition-all ${deviceCategory === 'android'
+                            ? 'border-blue-500 bg-blue-500/10'
+                            : 'border-slate-700 hover:border-slate-600'
+                            }`}
+                    >
+                        <div className="font-semibold">{t('android')}</div>
+                    </button>
+                </div>
+
+                {deviceCategory && (
+                    <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
+                        <label className="block text-sm text-gray-400 mb-2">
+                            {t('chooseDevice')}
+                        </label>
+                        <div className="flex flex-wrap gap-2">
+                            {(deviceCategory === 'smartTv' ? ['Samsung', 'LG', 'Apple TV'] : ['Android TV', 'TV Box', 'Tablet / Phone']).map((opt) => (
+                                <button
+                                    key={opt}
+                                    onClick={() => setDevice(opt)}
+                                    className={`px-4 py-2 rounded-lg border transition-all text-sm ${device === opt
+                                        ? 'bg-blue-600 border-blue-500 text-white'
+                                        : 'bg-slate-900 border-slate-700 text-gray-400 hover:bg-slate-700'
+                                        }`}
+                                >
+                                    {opt === 'Samsung' ? t('samsung') :
+                                        opt === 'LG' ? t('lg') :
+                                            opt === 'Apple TV' ? t('appleTv') :
+                                                opt === 'Android TV' ? t('androidTv') :
+                                                    opt === 'TV Box' ? t('tvBox') :
+                                                        opt === 'Tablet / Phone' ? t('mobile') : opt}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+
             <div className="grid grid-cols-2 gap-4">
                 <button
                     onClick={() => setPaymentMethod('paypal')}
@@ -260,7 +326,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
             <div className="flex flex-col gap-3">
                 <button
                     onClick={handleSubmit}
-                    disabled={loading || (proofType === 'file' && !proofFile) || (proofType === 'text' && !proofText)}
+                    disabled={loading || (proofType === 'file' && !proofFile) || (proofType === 'text' && !proofText) || !device}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                     {loading ? (

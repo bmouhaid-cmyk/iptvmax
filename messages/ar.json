@@ -72,7 +72,17 @@
         "paypalEmail": "بريد PayPal الإلكتروني",
         "walletAddress": "عنوان المحفظة / معرف المعاملة",
         "cancel": "إلغاء",
-        "copied": "تم النسخ!"
+        "copied": "تم النسخ!",
+        "deviceType": "نوع الجهاز",
+        "chooseDevice": "اختر جهازك",
+        "smartTv": "تلفزيون ذكي",
+        "android": "أندرويد",
+        "samsung": "سامسونج",
+        "lg": "إل جي",
+        "appleTv": "أبل تي في",
+        "androidTv": "أندرويد تي في",
+        "tvBox": "تي في بوكس",
+        "mobile": "جهاز لوحي / هاتف"
     },
     "Categories": {
         "title": "فئات القنوات المتاحة",

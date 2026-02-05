@@ -55,7 +55,10 @@ export default function AdminOrderRow({ order }: { order: any }) {
                         </div>
                     </div>
                     <div className="flex justify-between text-sm text-gray-400">
-                        <p className="capitalize">{order.package_type} - {order.payment_method}</p>
+                        <div className="flex flex-col gap-1">
+                            <p className="capitalize font-medium text-white">{order.package_type}</p>
+                            <p className="text-xs">{order.payment_method} • {order.device_type || 'No Device Selected'}</p>
+                        </div>
                         <p suppressHydrationWarning>{new Date(order.created_at).toLocaleDateString()}</p>
                         {order.payment_proof_url && (
                             <a
