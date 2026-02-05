@@ -184,6 +184,59 @@ export default function Home() {
       <ChannelCategoriesSection />
 
       <FAQSection />
+
+      {/* Structured Data (JSON-LD) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'tv4watch',
+            url: 'https://tv4watch.com',
+            logo: 'https://tv4watch.com/logo.png',
+            sameAs: [
+              'https://twitter.com/tv4watch',
+              'https://facebook.com/tv4watch',
+            ],
+            contactPoint: {
+              '@type': 'ContactPoint',
+              telephone: '+1-234-567-8900',
+              contactType: 'customer service',
+              availableLanguage: ['English', 'French', 'Arabic', 'Spanish'],
+            },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: 'Premium IPTV Subscription',
+            image: 'https://tv4watch.com/og-image.jpg',
+            description: 'One of the best IPTV services with over 10,000 channels in 4K/FHD. Anti-freeze technology and 24/7 support.',
+            brand: {
+              '@type': 'Brand',
+              name: 'tv4watch',
+            },
+            offers: {
+              '@type': 'AggregateOffer',
+              url: 'https://tv4watch.com/#pricing',
+              priceCurrency: 'USD',
+              lowPrice: '0.99',
+              highPrice: '59.00',
+              offerCount: '4',
+            },
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: '4.8',
+              reviewCount: '1250',
+            },
+          }),
+        }}
+      />
     </div>
   )
 }
