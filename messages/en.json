@@ -31,8 +31,20 @@
             "quality": "4K/FHD Quality",
             "antifreeze": "Anti-Freeze Technology",
             "support247": "24/7 Support",
-            "prioritySupport": "Priority Support"
-        }
+            "prioritySupport": "Priority Support",
+            "fullAccess": "Full Access",
+            "channels15k": "15,000+ Channels",
+            "moviesSeries": "Movies & Series",
+            "noBuffering": "No Buffering",
+            "vipSupport": "VIP Support",
+            "save15": "Save 15%",
+            "bestValue": "Best Value",
+            "multiDevice": "Multi-Device"
+        },
+        "test24h": "24 Hours Test",
+        "month3": "3 Months",
+        "month6": "6 Months",
+        "month12": "12 Months"
     },
     "Checkout": {
         "title": "Checkout",

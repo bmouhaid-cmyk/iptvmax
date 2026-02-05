@@ -8,26 +8,39 @@ export default function DashboardFastBuy() {
 
     const getFeatures = (id: string) => {
         const common = [
+            t('features.channels15k'),
             t('features.quality'),
-            t('features.antifreeze'),
+            t('features.moviesSeries'),
+            t('features.noBuffering'),
         ]
-        if (id === '1-year') {
-            return [t('features.device2'), ...common, t('features.prioritySupport')]
+
+        switch (id) {
+            case '24h-test':
+                return [t('features.fullAccess'), ...common]
+            case '3-months':
+                return [...common, t('features.support247')]
+            case '6-months':
+                return [...common, t('features.prioritySupport'), t('features.save15')]
+            case '12-months':
+                return [...common, t('features.vipSupport'), t('features.bestValue'), t('features.multiDevice')]
+            default:
+                return common
         }
-        return [t('features.device1'), ...common, t('features.support247')]
     }
 
     const getTitle = (id: string) => {
-        if (id === '1-month') return `1 ${t('month')}`
-        if (id === '3-months') return `3 ${t('month')}s`
-        if (id === '1-year') return `1 ${t('year')}`
+        if (id === '24h-test') return t('test24h')
+        if (id === '3-months') return t('month3')
+        if (id === '6-months') return t('month6')
+        if (id === '12-months') return t('month12')
         return ''
     }
 
     const getDuration = (id: string) => {
-        if (id === '1-month') return t('month')
-        if (id === '3-months') return `3 ${t('month')}s`
-        if (id === '1-year') return t('year')
+        if (id === '24h-test') return '24h'
+        if (id === '3-months') return t('month3')
+        if (id === '6-months') return t('month6')
+        if (id === '12-months') return t('month12')
         return ''
     }
 
@@ -40,7 +53,7 @@ export default function DashboardFastBuy() {
                 <h2 className="text-xl font-bold text-white">Fast Buy Subscription</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {PRICING_PLANS.map((plan) => (
                     <div
                         key={plan.id}
@@ -59,7 +72,7 @@ export default function DashboardFastBuy() {
                             <div>
                                 <h3 className="text-lg font-semibold text-white">{getTitle(plan.id)}</h3>
                                 <div className="flex items-baseline gap-1 mt-1">
-                                    <span className="text-2xl font-bold text-white">${plan.price}</span>
+                                    <span className="text-2xl font-bold text-white">€{plan.price}</span>
                                     <span className="text-sm text-gray-400">/{getDuration(plan.id)}</span>
                                 </div>
                             </div>

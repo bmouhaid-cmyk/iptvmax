@@ -31,8 +31,20 @@
             "quality": "Qualité 4K/FHD",
             "antifreeze": "Technologie Anti-Coupure",
             "support247": "Support 24/7",
-            "prioritySupport": "Support Prioritaire"
-        }
+            "prioritySupport": "Support Prioritaire",
+            "fullAccess": "Accès Complet",
+            "channels15k": "+15,000 Chaînes",
+            "moviesSeries": "Films & Séries",
+            "noBuffering": "Sans Coupure",
+            "vipSupport": "Support VIP",
+            "save15": "Économisez 15%",
+            "bestValue": "Meilleure Valeur",
+            "multiDevice": "Multi-Appareils"
+        },
+        "test24h": "Test 24 Heures",
+        "month3": "3 Mois",
+        "month6": "6 Mois",
+        "month12": "12 Mois"
     },
     "Checkout": {
         "title": "Paiement",

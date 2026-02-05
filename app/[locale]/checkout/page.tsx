@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
+import { PRICING_PLANS } from '@/lib/constants'
 import { redirect } from '@/i18n/routing'
 import CheckoutForm from '@/components/CheckoutForm'
 import { getTranslations } from 'next-intl/server'
@@ -21,12 +22,13 @@ export default async function CheckoutPage({
         redirect({ href: `/login?next=/checkout?package=${pkg ?? ''}`, locale })
     }
 
-    const packageType = pkg?.replace('-', ' ') || '1 month'
+    // Find the plan from constants
+    // If exact match fails, try fallback or default to 1-month equivalent (now 24h or similar)
+    // Actually better to defaults to safe value
+    const selectedPlan = PRICING_PLANS.find(p => p.linkParam === pkg) || PRICING_PLANS[0]
 
-    // Calculate price based on package
-    let price = '10'
-    if (packageType.includes('3')) price = '25'
-    if (packageType.includes('1 year') || packageType.includes('year')) price = '70'
+    const packageType = selectedPlan.title
+    const price = selectedPlan.price
 
     return (
         <div className="min-h-screen bg-slate-950 text-white py-12 px-4 sm:px-6 lg:px-8">
@@ -37,7 +39,7 @@ export default async function CheckoutPage({
                     <h3 className="text-lg font-semibold mb-2">Order Summary</h3>
                     <div className="flex justify-between items-center">
                         <span className="capitalize">{packageType} Subscription</span>
-                        <span className="font-bold text-xl">${price}</span>
+                        <span className="font-bold text-xl">€{price}</span>
                     </div>
                 </div>
 

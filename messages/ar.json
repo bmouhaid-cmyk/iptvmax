@@ -31,8 +31,20 @@
             "quality": "جودة 4K/FHD",
             "antifreeze": "تقنية ضد التقطيع",
             "support247": "دعم فني 24/7",
-            "prioritySupport": "دعم ذو أولوية"
-        }
+            "prioritySupport": "دعم ذو أولوية",
+            "fullAccess": "وصول كامل",
+            "channels15k": "+15,000 قناة",
+            "moviesSeries": "أفلام ومسلسلات",
+            "noBuffering": "بدون تقطيع",
+            "vipSupport": "دعم VIP",
+            "save15": "وفر 15%",
+            "bestValue": "أفضل قيمة",
+            "multiDevice": "متعدد الأجهزة"
+        },
+        "test24h": "تجربة 24 ساعة",
+        "month3": "3 أشهر",
+        "month6": "6 أشهر",
+        "month12": "12 شهر"
     },
     "Checkout": {
         "title": "الدفع",

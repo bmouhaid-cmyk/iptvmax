@@ -6,15 +6,16 @@ interface PricingCardProps {
     price: string
     duration: string
     features: string[]
+    packageId?: string
     popular?: boolean
     ctaText?: string
 }
 
-export default function PricingCard({ title, price, duration, features, popular, ctaText = "Get Started" }: PricingCardProps) {
+export default function PricingCard({ title, price, duration, features, popular, ctaText = "Get Started", packageId }: PricingCardProps) {
     return (
         <div className={`relative p-8 rounded-3xl flex flex-col transition-all duration-300 hover:scale-105 ${popular
-                ? 'bg-gradient-to-b from-slate-800/80 to-slate-900/80 border-2 border-blue-500 shadow-[0_0_40px_-10px_rgba(59,130,246,0.5)]'
-                : 'bg-slate-900/50 border border-slate-700 hover:border-slate-600 hover:bg-slate-800/50'
+            ? 'bg-gradient-to-b from-slate-800/80 to-slate-900/80 border-2 border-blue-500 shadow-[0_0_40px_-10px_rgba(59,130,246,0.5)]'
+            : 'bg-slate-900/50 border border-slate-700 hover:border-slate-600 hover:bg-slate-800/50'
             } backdrop-blur-xl`}>
 
             {popular && (
@@ -29,7 +30,7 @@ export default function PricingCard({ title, price, duration, features, popular,
             <div className="flex-1 pt-4">
                 <h3 className={`text-xl font-semibold ${popular ? 'text-blue-400' : 'text-slate-300'}`}>{title}</h3>
                 <div className="mt-6 flex items-baseline">
-                    <span className="text-5xl font-bold tracking-tight text-white">${price}</span>
+                    <span className="text-5xl font-bold tracking-tight text-white">€{price}</span>
                     <span className="ml-2 text-lg font-medium text-slate-400">/{duration}</span>
                 </div>
 
@@ -48,10 +49,10 @@ export default function PricingCard({ title, price, duration, features, popular,
             </div>
 
             <Link
-                href={`/checkout?package=${title.toLowerCase().replace(' ', '-')}`}
+                href={`/checkout?package=${packageId || title.toLowerCase().replace(' ', '-')}`}
                 className={`mt-8 block w-full py-4 px-6 rounded-xl text-center font-bold text-lg transition-all duration-300 shadow-lg ${popular
-                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-500 hover:to-cyan-500 hover:shadow-blue-500/25'
-                        : 'bg-slate-700 text-white hover:bg-slate-600 hover:text-white'
+                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:from-blue-500 hover:to-cyan-500 hover:shadow-blue-500/25'
+                    : 'bg-slate-700 text-white hover:bg-slate-600 hover:text-white'
                     }`}
             >
                 {ctaText}

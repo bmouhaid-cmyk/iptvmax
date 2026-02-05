@@ -46,43 +46,66 @@ export default function Home() {
             </p>
           </div>
           <div className="mx-auto mt-16 max-w-2xl lg:mx-0 lg:flex lg:max-w-none lg:items-center lg:gap-8">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 w-full">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-4 w-full">
               <PricingCard
-                title={`1 ${tPricing('month')}`}
-                price="10"
-                duration={tPricing('month')}
+                title={tPricing('test24h')}
+                price="0.99"
+                duration="24h"
                 features={[
-                  tPricing('features.device1'),
+                  tPricing('features.fullAccess'),
+                  tPricing('features.channels15k'),
                   tPricing('features.quality'),
-                  tPricing('features.antifreeze'),
+                  tPricing('features.moviesSeries'),
+                  tPricing('features.noBuffering')
+                ]}
+                ctaText={tPricing('subscribe')}
+                packageId="24h-test"
+              />
+              <PricingCard
+                title={tPricing('month3')}
+                price="19.00"
+                duration={tPricing('month3')}
+                features={[
+                  tPricing('features.channels15k'),
+                  tPricing('features.quality'),
+                  tPricing('features.moviesSeries'),
+                  tPricing('features.noBuffering'),
                   tPricing('features.support247')
                 ]}
                 ctaText={tPricing('subscribe')}
+                packageId="3-months"
               />
               <PricingCard
-                title={`3 ${tPricing('month')}s`}
-                price="25"
-                duration={`3 ${tPricing('month')}s`}
+                title={tPricing('month6')}
+                price="32.00"
+                duration={tPricing('month6')}
                 features={[
-                  tPricing('features.device1'),
+                  tPricing('features.channels15k'),
                   tPricing('features.quality'),
-                  tPricing('features.antifreeze'),
-                  tPricing('features.support247')
+                  tPricing('features.moviesSeries'),
+                  tPricing('features.noBuffering'),
+                  tPricing('features.prioritySupport'),
+                  tPricing('features.save15')
                 ]}
                 popular={true}
                 ctaText={tPricing('subscribe')}
+                packageId="6-months"
               />
               <PricingCard
-                title={`1 ${tPricing('year')}`}
-                price="70"
-                duration={tPricing('year')}
+                title={tPricing('month12')}
+                price="59.00"
+                duration={tPricing('month12')}
                 features={[
-                  tPricing('features.device2'),
+                  tPricing('features.channels15k'),
                   tPricing('features.quality'),
-                  tPricing('features.antifreeze'),
-                  tPricing('features.prioritySupport')
+                  tPricing('features.moviesSeries'),
+                  tPricing('features.noBuffering'),
+                  tPricing('features.vipSupport'),
+                  tPricing('features.bestValue'),
+                  tPricing('features.multiDevice')
                 ]}
                 ctaText={tPricing('subscribe')}
+                packageId="12-months"
               />
             </div>
           </div>
