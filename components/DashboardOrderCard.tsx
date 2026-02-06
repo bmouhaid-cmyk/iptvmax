@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Copy, Check, Download, ExternalLink } from 'lucide-react'
+import { Copy, Check, Download, ExternalLink, Clock } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 
