@@ -16,8 +16,16 @@
     "Hero": {
         "title": "Service tv4watch Premium",
         "subtitle": "Accédez à plus de 10 000 chaînes et contenus VOD en qualité 4K.",
+        "description_extra": "Profitez d'un streaming sans coupure avec nos serveurs mondiaux ultra-rapides.",
         "cta": "Commencer",
-        "features": "Voir les fonctionnalités"
+        "features": "Voir les fonctionnalités",
+        "badge": "Service IPTV Premium #1",
+        "ssl": "Sécurisé SSL",
+        "instant": "Installation Instantanée",
+        "card_sports": "Sports en Direct",
+        "card_sports_desc": "NBA, PL, UFC et Plus",
+        "card_movies": "Films 4K",
+        "card_movies_desc": "Derniers Blockbusters"
     },
     "Pricing": {
         "title": "Tarification Simple",
