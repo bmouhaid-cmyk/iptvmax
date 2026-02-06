@@ -136,5 +136,17 @@
             "question": "Avez-vous des chaînes adultes ?",
             "answer": "Oui, nous avons une large sélection de chaînes adultes qui peuvent être protégées par mot de passe."
         }
+    },
+    "Dashboard": {
+        "title": "Mon Tableau de Bord",
+        "orders": "Mes Commandes",
+        "active": "Actif",
+        "expired": "Expiré",
+        "pending": "En attente",
+        "downloadM3u": "Télécharger M3U",
+        "copy": "Copier",
+        "username": "Nom d'utilisateur",
+        "password": "Mot de passe",
+        "url": "URL M3U"
     }
 }

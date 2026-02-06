@@ -6,7 +6,7 @@ import { Check, Zap } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useCurrency } from '@/context/CurrencyContext'
 
-export default function DashboardFastBuy() {
+export default function DashboardFastBuy({ compact = false }: { compact?: boolean }) {
     const t = useTranslations('Pricing')
     const { currency, symbol } = useCurrency()
 
@@ -57,7 +57,7 @@ export default function DashboardFastBuy() {
                 <h2 className="text-xl font-bold text-white">Fast Buy Subscription</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className={`grid gap-6 ${compact ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'}`}>
                 {PRICING_PLANS.map((plan) => (
                     <div
                         key={plan.id}

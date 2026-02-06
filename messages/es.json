@@ -122,5 +122,17 @@
             "question": "¿Tienen canales para adultos?",
             "answer": "Sí, tenemos una amplia selección de canales para adultos que pueden protegerse con contraseña."
         }
+    },
+    "Dashboard": {
+        "title": "Mi Panel",
+        "orders": "Mis Pedidos",
+        "active": "Activo",
+        "expired": "Vencido",
+        "pending": "Pendiente",
+        "downloadM3u": "Descargar M3U",
+        "copy": "Copiar",
+        "username": "Usuario",
+        "password": "Contraseña",
+        "url": "URL M3U"
     }
 }

@@ -136,5 +136,17 @@
             "question": "Do you have adult channels?",
             "answer": "Yes, we have a wide selection of adult channels which can be password protected."
         }
+    },
+    "Dashboard": {
+        "title": "My Dashboard",
+        "orders": "My Orders",
+        "active": "Active",
+        "expired": "Expired",
+        "pending": "Pending",
+        "downloadM3u": "Download M3U",
+        "copy": "Copy",
+        "username": "Username",
+        "password": "Password",
+        "url": "M3U URL"
     }
 }
