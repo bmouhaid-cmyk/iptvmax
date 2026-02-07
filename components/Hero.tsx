@@ -9,7 +9,7 @@ export default function Hero() {
     const tPricing = useTranslations('Pricing')
 
     return (
-        <div className="relative isolate overflow-hidden bg-slate-950 pt-14 pb-16 sm:pb-24">
+        <div className="relative isolate overflow-hidden bg-slate-950 pt-6 pb-8 sm:pb-12">
             {/* Dynamic Background Effects */}
             <div className="absolute inset-0 -z-10 h-full w-full bg-slate-950">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-600/20 blur-[120px] animate-pulse" />
@@ -18,7 +18,7 @@ export default function Hero() {
             </div>
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:py-32">
+                <div className="mx-auto max-w-2xl py-12 sm:py-16 lg:py-24 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16">
 
                     {/* Left Column: Text Content */}
                     <div className="flex flex-col justify-center text-center lg:text-left z-10">
