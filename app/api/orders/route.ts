@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 export async function POST(request: Request) {
     try {
         const supabase = await createClient()
-        const { userId, packageType, paymentMethod, paymentProofUrl, paymentProofText, device } = await request.json()
+        const { userId, packageType, paymentMethod, paymentProofUrl, paymentProofText, device, status } = await request.json()
 
         // Ensure profile exists
         const { data: profile } = await supabase.from('profiles').select('id').eq('id', userId).single()
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
         const { data, error } = await supabase.from('orders').insert({
             user_id: userId,
             package_type: packageType,
-            status: 'Pending',
+            status: status || 'Pending',
             payment_method: paymentMethod,
             payment_proof_url: paymentProofUrl,
             payment_proof_text: paymentProofText,

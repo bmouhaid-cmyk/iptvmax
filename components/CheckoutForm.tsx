@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
 import { Upload, X, CheckCircle } from 'lucide-react'
 import Image from 'next/image'
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
 
 export default function CheckoutForm({ packageType, price, userId }: { packageType: string, price: string, userId: string }) {
     const t = useTranslations('Checkout')
@@ -20,6 +21,8 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
     const [device, setDevice] = useState('')
     const [deviceCategory, setDeviceCategory] = useState('')
     const router = useRouter()
+
+    const paypalClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test"
 
     const deviceOptions = {
         smartTv: ['Samsung', 'LG', 'Apple TV'],
@@ -46,18 +49,22 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
         setPreviewUrl(null)
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (paypalDetails?: any) => {
         if (!device) {
             alert('Please select your device type.')
             return
         }
-        if (proofType === 'file' && !proofFile) {
-            alert('Please upload a payment proof screenshot.')
-            return
-        }
-        if (proofType === 'text' && !proofText.trim()) {
-            alert('Please enter your wallet address or email.')
-            return
+
+        // PayPal handling is separate, this is for Crypto mainly now
+        if (paymentMethod === 'crypto') {
+            if (proofType === 'file' && !proofFile) {
+                alert('Please upload a payment proof screenshot.')
+                return
+            }
+            if (proofType === 'text' && !proofText.trim()) {
+                alert('Please enter your wallet address or email.')
+                return
+            }
         }
 
         setLoading(true)
@@ -73,7 +80,6 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                 const fileName = `${Date.now()}.${fileExt}`
                 const filePath = `${userId}/${fileName}`
 
-                // Upload proof to Supabase Storage
                 const { error: uploadError } = await supabase.storage
                     .from('payment-proofs')
                     .upload(filePath, proofFile)
@@ -82,7 +88,6 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                     throw new Error('Failed to upload payment proof: ' + uploadError.message)
                 }
 
-                // Get public URL
                 const { data } = supabase.storage
                     .from('payment-proofs')
                     .getPublicUrl(filePath)
@@ -90,7 +95,8 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                 publicUrl = data.publicUrl
             }
 
-            // Submit order with proof URL or Text
+            const isPayPal = paymentMethod === 'paypal' && paypalDetails
+
             const response = await fetch('/api/orders', {
                 method: 'POST',
                 headers: {
@@ -101,8 +107,9 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                     packageType,
                     paymentMethod,
                     paymentProofUrl: publicUrl,
-                    paymentProofText: proofType === 'text' ? proofText : null,
-                    device
+                    paymentProofText: isPayPal ? paypalDetails.id : (proofType === 'text' ? proofText : null),
+                    device,
+                    status: isPayPal ? 'Paid' : 'Pending'
                 }),
             })
 
@@ -123,226 +130,256 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
         }
     }
 
-    const whatsappUrl = `https://wa.me/1234567890?text=${encodeURIComponent(`Hello, I have made a payment for the ${packageType} package.`)}`
+    const initialOptions = {
+        clientId: paypalClientId,
+        currency: "EUR", // Defaulting to EUR as per checkout page
+        intent: "capture",
+    };
 
     return (
-        <div className="space-y-6">
-            {/* Device Selection */}
-            <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-300">
-                    {t('deviceType')}
-                </label>
-                <div className="grid grid-cols-2 gap-4 mb-4">
+        <PayPalScriptProvider options={initialOptions}>
+            <div className="space-y-6">
+                {/* Device Selection */}
+                <div className="space-y-4">
+                    <label className="block text-sm font-medium text-gray-300">
+                        {t('deviceType')}
+                    </label>
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                        <button
+                            onClick={() => { setDeviceCategory('smartTv'); setDevice('') }}
+                            className={`p-4 rounded-lg border-2 transition-all ${deviceCategory === 'smartTv'
+                                ? 'border-blue-500 bg-blue-500/10'
+                                : 'border-slate-700 hover:border-slate-600'
+                                }`}
+                        >
+                            <div className="font-semibold">{t('smartTv')}</div>
+                        </button>
+                        <button
+                            onClick={() => { setDeviceCategory('android'); setDevice('') }}
+                            className={`p-4 rounded-lg border-2 transition-all ${deviceCategory === 'android'
+                                ? 'border-blue-500 bg-blue-500/10'
+                                : 'border-slate-700 hover:border-slate-600'
+                                }`}
+                        >
+                            <div className="font-semibold">{t('android')}</div>
+                        </button>
+                    </div>
+
+                    {deviceCategory && (
+                        <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
+                            <label className="block text-sm text-gray-400 mb-2">
+                                {t('chooseDevice')}
+                            </label>
+                            <div className="flex flex-wrap gap-2">
+                                {(deviceCategory === 'smartTv' ? ['Samsung', 'LG', 'Apple TV'] : ['Android TV', 'TV Box', 'Tablet / Phone']).map((opt) => (
+                                    <button
+                                        key={opt}
+                                        onClick={() => setDevice(opt)}
+                                        className={`px-4 py-2 rounded-lg border transition-all text-sm ${device === opt
+                                            ? 'bg-blue-600 border-blue-500 text-white'
+                                            : 'bg-slate-900 border-slate-700 text-gray-400 hover:bg-slate-700'
+                                            }`}
+                                    >
+                                        {opt === 'Samsung' ? t('samsung') :
+                                            opt === 'LG' ? t('lg') :
+                                                opt === 'Apple TV' ? t('appleTv') :
+                                                    opt === 'Android TV' ? t('androidTv') :
+                                                        opt === 'TV Box' ? t('tvBox') :
+                                                            opt === 'Tablet / Phone' ? t('mobile') : opt}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
                     <button
-                        onClick={() => { setDeviceCategory('smartTv'); setDevice('') }}
-                        className={`p-4 rounded-lg border-2 transition-all ${deviceCategory === 'smartTv'
+                        onClick={() => setPaymentMethod('paypal')}
+                        className={`p-4 rounded-lg border-2 transition-all ${paymentMethod === 'paypal'
                             ? 'border-blue-500 bg-blue-500/10'
                             : 'border-slate-700 hover:border-slate-600'
                             }`}
                     >
-                        <div className="font-semibold">{t('smartTv')}</div>
+                        <div className="font-semibold">{t('paypal')}</div>
                     </button>
                     <button
-                        onClick={() => { setDeviceCategory('android'); setDevice('') }}
-                        className={`p-4 rounded-lg border-2 transition-all ${deviceCategory === 'android'
-                            ? 'border-blue-500 bg-blue-500/10'
+                        onClick={() => setPaymentMethod('crypto')}
+                        className={`p-4 rounded-lg border-2 transition-all ${paymentMethod === 'crypto'
+                            ? 'border-green-500 bg-green-500/10'
                             : 'border-slate-700 hover:border-slate-600'
                             }`}
                     >
-                        <div className="font-semibold">{t('android')}</div>
+                        <div className="font-semibold">{t('crypto')}</div>
                     </button>
                 </div>
 
-                {deviceCategory && (
-                    <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
-                        <label className="block text-sm text-gray-400 mb-2">
-                            {t('chooseDevice')}
-                        </label>
-                        <div className="flex flex-wrap gap-2">
-                            {(deviceCategory === 'smartTv' ? ['Samsung', 'LG', 'Apple TV'] : ['Android TV', 'TV Box', 'Tablet / Phone']).map((opt) => (
+                {/* PayPal Smart Buttons */}
+                {paymentMethod === 'paypal' ? (
+                    <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                        {device ? (
+                            <PayPalButtons
+                                style={{ layout: "vertical", shape: "rect", label: "pay" }}
+                                createOrder={(data, actions) => {
+                                    return actions.order.create({
+                                        intent: "CAPTURE",
+                                        purchase_units: [
+                                            {
+                                                amount: {
+                                                    value: price,
+                                                    currency_code: "EUR"
+                                                },
+                                                description: "Web Development Service" // Cloaking as requested
+                                            },
+                                        ],
+                                    });
+                                }}
+                                onApprove={async (data, actions) => {
+                                    if (actions.order) {
+                                        const details = await actions.order.capture();
+                                        // Call handleSubmit with PayPal details
+                                        handleSubmit(details);
+                                    }
+                                }}
+                                onError={(err) => {
+                                    console.error("PayPal Error:", err);
+                                    alert("Payment failed. Please try again.");
+                                }}
+                            />
+                        ) : (
+                            <p className="text-yellow-500 text-sm text-center">Please select a device to proceed with payment.</p>
+                        )}
+                        <p className="text-xs text-gray-500 mt-4 text-center">Secure payment processed by PayPal</p>
+                    </div>
+                ) : (
+                    // Crypto UI
+                    <>
+                        <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
+                            <div>
+                                <p className="text-sm text-gray-400 mb-2">{t('sendUsdtTo')}</p>
+                                <div className="flex items-center justify-between bg-slate-900 p-3 rounded">
+                                    <code className="text-green-400 text-sm break-all font-mono">
+                                        TNPWVxbBxccyK6MiJmWZXHh6Xy7Qph8xjc
+                                    </code>
+                                    <button
+                                        onClick={() => handleCopy('TNPWVxbBxccyK6MiJmWZXHh6Xy7Qph8xjc')}
+                                        className="text-sm text-gray-400 hover:text-white ml-2"
+                                    >
+                                        {copied ? t('copied') : 'Copy'}
+                                    </button>
+                                </div>
+                                <div className="mt-2 text-xs font-bold text-amber-500 bg-amber-500/10 p-2 rounded border border-amber-500/20 text-center">
+                                    ⚠️ {t('trc20_warning')}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Upload Section (Only for Crypto) */}
+                        <div className="space-y-4">
+                            <label className="block text-sm font-medium text-gray-300">
+                                {t('paymentProof')}
+                            </label>
+
+                            <div className="flex gap-4 mb-4">
                                 <button
-                                    key={opt}
-                                    onClick={() => setDevice(opt)}
-                                    className={`px-4 py-2 rounded-lg border transition-all text-sm ${device === opt
+                                    onClick={() => setProofType('text')}
+                                    className={`flex-1 py-2 px-4 rounded-lg border transition-all ${proofType === 'text'
                                         ? 'bg-blue-600 border-blue-500 text-white'
-                                        : 'bg-slate-900 border-slate-700 text-gray-400 hover:bg-slate-700'
+                                        : 'bg-slate-800 border-slate-700 text-gray-400 hover:bg-slate-700'
                                         }`}
                                 >
-                                    {opt === 'Samsung' ? t('samsung') :
-                                        opt === 'LG' ? t('lg') :
-                                            opt === 'Apple TV' ? t('appleTv') :
-                                                opt === 'Android TV' ? t('androidTv') :
-                                                    opt === 'TV Box' ? t('tvBox') :
-                                                        opt === 'Tablet / Phone' ? t('mobile') : opt}
+                                    {t('enterWalletEmail')}
                                 </button>
-                            ))}
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-                <button
-                    onClick={() => setPaymentMethod('paypal')}
-                    className={`p-4 rounded-lg border-2 transition-all ${paymentMethod === 'paypal'
-                        ? 'border-blue-500 bg-blue-500/10'
-                        : 'border-slate-700 hover:border-slate-600'
-                        }`}
-                >
-                    <div className="font-semibold">{t('paypal')}</div>
-                </button>
-                <button
-                    onClick={() => setPaymentMethod('crypto')}
-                    className={`p-4 rounded-lg border-2 transition-all ${paymentMethod === 'crypto'
-                        ? 'border-green-500 bg-green-500/10'
-                        : 'border-slate-700 hover:border-slate-600'
-                        }`}
-                >
-                    <div className="font-semibold">{t('crypto')}</div>
-                </button>
-            </div>
-
-            {/* Payment Details */}
-            <div className="p-4 bg-slate-800/50 rounded-lg border border-slate-700">
-                {paymentMethod === 'paypal' ? (
-                    <div>
-                        <p className="text-sm text-gray-400 mb-2">{t('sendPaymentTo')}</p>
-                        <div className="flex items-center justify-between bg-slate-900 p-3 rounded">
-                            <code className="text-blue-400">paypal@example.com</code>
-                            <button
-                                onClick={() => handleCopy('paypal@example.com')}
-                                className="text-sm text-gray-400 hover:text-white"
-                            >
-                                {copied ? t('copied') : 'Copy'}
-                            </button>
-                        </div>
-                    </div>
-                ) : (
-                    <div>
-                        <p className="text-sm text-gray-400 mb-2">{t('sendUsdtTo')}</p>
-                        <div className="flex items-center justify-between bg-slate-900 p-3 rounded">
-                            <code className="text-green-400 text-sm break-all font-mono">
-                                TNPWVxbBxccyK6MiJmWZXHh6Xy7Qph8xjc
-                            </code>
-                            <button
-                                onClick={() => handleCopy('TNPWVxbBxccyK6MiJmWZXHh6Xy7Qph8xjc')}
-                                className="text-sm text-gray-400 hover:text-white ml-2"
-                            >
-                                {copied ? t('copied') : 'Copy'}
-                            </button>
-                        </div>
-                        <div className="mt-2 text-xs font-bold text-amber-500 bg-amber-500/10 p-2 rounded border border-amber-500/20 text-center">
-                            ⚠️ {t('trc20_warning')}
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            {/* Upload Section */}
-            <div className="space-y-4">
-                <label className="block text-sm font-medium text-gray-300">
-                    {t('paymentProof')}
-                </label>
-
-                <div className="flex gap-4 mb-4">
-                    <button
-                        onClick={() => setProofType('text')}
-                        className={`flex-1 py-2 px-4 rounded-lg border transition-all ${proofType === 'text'
-                            ? 'bg-blue-600 border-blue-500 text-white'
-                            : 'bg-slate-800 border-slate-700 text-gray-400 hover:bg-slate-700'
-                            }`}
-                    >
-                        {t('enterWalletEmail')}
-                    </button>
-                    <button
-                        onClick={() => setProofType('file')}
-                        className={`flex-1 py-2 px-4 rounded-lg border transition-all ${proofType === 'file'
-                            ? 'bg-blue-600 border-blue-500 text-white'
-                            : 'bg-slate-800 border-slate-700 text-gray-400 hover:bg-slate-700'
-                            }`}
-                    >
-                        {t('uploadScreenshot')}
-                    </button>
-                </div>
-
-                {proofType === 'file' ? (
-                    !previewUrl ? (
-                        <div className="relative border-2 border-dashed border-slate-700 rounded-lg p-8 hover:border-blue-500 transition-colors bg-slate-800/30">
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={handleFileChange}
-                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                            />
-                            <div className="text-center">
-                                <Upload className="mx-auto h-10 w-10 text-gray-400 mb-3" />
-                                <p className="text-sm text-gray-300 font-medium">{t('clickToUpload')}</p>
-                                <p className="text-xs text-gray-500 mt-1">PNG, JPG up to 5MB</p>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="relative rounded-lg overflow-hidden border border-slate-700 bg-slate-800">
-                            <div className="relative h-48 w-full">
-                                <Image
-                                    src={previewUrl}
-                                    alt="Payment Proof"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </div>
-                            <div className="p-3 bg-slate-900 flex items-center justify-between">
-                                <span className="text-sm text-gray-300 truncate max-w-[200px]">
-                                    {proofFile?.name}
-                                </span>
                                 <button
-                                    onClick={removeFile}
-                                    className="text-red-400 hover:text-red-300 p-1"
+                                    onClick={() => setProofType('file')}
+                                    className={`flex-1 py-2 px-4 rounded-lg border transition-all ${proofType === 'file'
+                                        ? 'bg-blue-600 border-blue-500 text-white'
+                                        : 'bg-slate-800 border-slate-700 text-gray-400 hover:bg-slate-700'
+                                        }`}
                                 >
-                                    <X size={20} />
+                                    {t('uploadScreenshot')}
                                 </button>
                             </div>
+
+                            {proofType === 'file' ? (
+                                !previewUrl ? (
+                                    <div className="relative border-2 border-dashed border-slate-700 rounded-lg p-8 hover:border-blue-500 transition-colors bg-slate-800/30">
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={handleFileChange}
+                                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                        />
+                                        <div className="text-center">
+                                            <Upload className="mx-auto h-10 w-10 text-gray-400 mb-3" />
+                                            <p className="text-sm text-gray-300 font-medium">{t('clickToUpload')}</p>
+                                            <p className="text-xs text-gray-500 mt-1">PNG, JPG up to 5MB</p>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="relative rounded-lg overflow-hidden border border-slate-700 bg-slate-800">
+                                        <div className="relative h-48 w-full">
+                                            <Image
+                                                src={previewUrl}
+                                                alt="Payment Proof"
+                                                fill
+                                                className="object-contain"
+                                            />
+                                        </div>
+                                        <div className="p-3 bg-slate-900 flex items-center justify-between">
+                                            <span className="text-sm text-gray-300 truncate max-w-[200px]">
+                                                {proofFile?.name}
+                                            </span>
+                                            <button
+                                                onClick={removeFile}
+                                                className="text-red-400 hover:text-red-300 p-1"
+                                            >
+                                                <X size={20} />
+                                            </button>
+                                        </div>
+                                    </div>
+                                )
+                            ) : (
+                                <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
+                                    <label className="block text-sm text-gray-400 mb-2">
+                                        {t('walletAddress')}
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={proofText}
+                                        onChange={(e) => setProofText(e.target.value)}
+                                        placeholder={'e.g. TxID or Wallet Address'}
+                                        className="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                                    />
+                                </div>
+                            )}
                         </div>
-                    )
-                ) : (
-                    <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
-                        <label className="block text-sm text-gray-400 mb-2">
-                            {paymentMethod === 'paypal' ? t('paypalEmail') : t('walletAddress')}
-                        </label>
-                        <input
-                            type="text"
-                            value={proofText}
-                            onChange={(e) => setProofText(e.target.value)}
-                            placeholder={paymentMethod === 'paypal' ? 'e.g. your-email@example.com' : 'e.g. TxID or Wallet Address'}
-                            className="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
-                        />
-                    </div>
+
+                        <div className="bg-yellow-500/10 border border-yellow-500/50 rounded-lg p-4">
+                            <p className="text-yellow-200 text-sm font-medium flex items-start gap-2">
+                                <span className="text-lg">⚠️</span>
+                                <span>
+                                    <strong>{t('important')}:</strong> {t('instruction')}
+                                </span>
+                            </p>
+                        </div>
+
+                        <button
+                            onClick={() => handleSubmit()}
+                            disabled={loading || (proofType === 'file' && !proofFile) || (proofType === 'text' && !proofText) || !device}
+                            className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        >
+                            {loading ? (
+                                <>
+                                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                    {uploading ? 'Uploading Proof...' : t('processing')}
+                                </>
+                            ) : (
+                                t('payButton')
+                            )}
+                        </button>
+                    </>
                 )}
-            </div>
-
-            <div className="bg-yellow-500/10 border border-yellow-500/50 rounded-lg p-4">
-                <p className="text-yellow-200 text-sm font-medium flex items-start gap-2">
-                    <span className="text-lg">⚠️</span>
-                    <span>
-                        <strong>{t('important')}:</strong> {t('instruction')}
-                    </span>
-                </p>
-            </div>
-
-            <div className="flex flex-col gap-3">
-                <button
-                    onClick={handleSubmit}
-                    disabled={loading || (proofType === 'file' && !proofFile) || (proofType === 'text' && !proofText) || !device}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                    {loading ? (
-                        <>
-                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                            {uploading ? 'Uploading Proof...' : t('processing')}
-                        </>
-                    ) : (
-                        t('payButton')
-                    )}
-                </button>
 
                 <button
                     onClick={() => router.push('/')}
@@ -350,33 +387,35 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                 >
                     {t('cancel')}
                 </button>
-            </div>
 
-            {/* Payment Proof Modal */}
-            {showModal && (
-                <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
-                    <div className="bg-slate-900 rounded-xl p-6 max-w-md w-full border border-slate-700 shadow-2xl">
-                        <div className="text-center mb-6">
-                            <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <CheckCircle className="w-8 h-8 text-green-500" />
+                {/* Success Modal (Updated to handle Paid status message if needed) */}
+                {showModal && (
+                    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+                        <div className="bg-slate-900 rounded-xl p-6 max-w-md w-full border border-slate-700 shadow-2xl">
+                            <div className="text-center mb-6">
+                                <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <CheckCircle className="w-8 h-8 text-green-500" />
+                                </div>
+                                <h3 className="text-xl font-bold mb-2 text-white">{paymentMethod === 'paypal' ? "Payment Received!" : t('modalTitle')}</h3>
+                                <p className="text-gray-300">
+                                    {paymentMethod === 'paypal'
+                                        ? "Your order is being processed manually by our team. Please check your dashboard shortly."
+                                        : "Your order and payment proof have been received! We will verify it and activate your subscription shortly."}
+                                </p>
                             </div>
-                            <h3 className="text-xl font-bold mb-2 text-white">{t('modalTitle')}</h3>
-                            <p className="text-gray-300">
-                                Your order and payment proof have been received! We will verify it and activate your subscription shortly.
-                            </p>
-                        </div>
 
-                        <div className="space-y-3">
-                            <button
-                                onClick={() => router.push('/dashboard')}
-                                className="block w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-lg transition-colors text-center"
-                            >
-                                {t('dashboardButton')}
-                            </button>
+                            <div className="space-y-3">
+                                <button
+                                    onClick={() => router.push('/dashboard')}
+                                    className="block w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-lg transition-colors text-center"
+                                >
+                                    {t('dashboardButton')}
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
-        </div>
+                )}
+            </div>
+        </PayPalScriptProvider>
     )
 }
