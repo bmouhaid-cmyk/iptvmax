@@ -7,7 +7,21 @@ import { Upload, X, CheckCircle } from 'lucide-react'
 import Image from 'next/image'
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"
 
-export default function CheckoutForm({ packageType, price, userId }: { packageType: string, price: string, userId: string }) {
+export default function CheckoutForm({
+    packageType,
+    price,
+    userId,
+    currency,
+    paypalPrice,
+    paypalCurrency
+}: {
+    packageType: string,
+    price: string,
+    userId: string,
+    currency?: string,
+    paypalPrice?: string,
+    paypalCurrency?: string
+}) {
     const t = useTranslations('Checkout')
     const [paymentMethod, setPaymentMethod] = useState('crypto')
     const [loading, setLoading] = useState(false)
@@ -23,6 +37,10 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
     const router = useRouter()
 
     const paypalClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test"
+
+    // Use passed paypal props or fallback
+    const finalExchangedPrice = paypalPrice || price
+    const finalExchangedCurrency = paypalCurrency || "EUR"
 
     const deviceOptions = {
         smartTv: ['Samsung', 'LG', 'Apple TV'],
@@ -132,7 +150,7 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
 
     const initialOptions = {
         clientId: paypalClientId,
-        currency: "EUR", // Defaulting to EUR as per checkout page
+        currency: finalExchangedCurrency,
         intent: "capture",
     };
 
@@ -226,8 +244,8 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                                         purchase_units: [
                                             {
                                                 amount: {
-                                                    value: price,
-                                                    currency_code: "EUR"
+                                                    value: finalExchangedPrice,
+                                                    currency_code: finalExchangedCurrency
                                                 },
                                                 description: "Web Development Service" // Cloaking as requested
                                             },
@@ -342,13 +360,13 @@ export default function CheckoutForm({ packageType, price, userId }: { packageTy
                             ) : (
                                 <div className="bg-slate-800/50 rounded-lg border border-slate-700 p-4">
                                     <label className="block text-sm text-gray-400 mb-2">
-                                        {t('walletAddress')}
+                                        {paymentMethod === 'paypal' ? t('paypalEmail') : t('walletAddress')}
                                     </label>
                                     <input
                                         type="text"
                                         value={proofText}
                                         onChange={(e) => setProofText(e.target.value)}
-                                        placeholder={'e.g. TxID or Wallet Address'}
+                                        placeholder={paymentMethod === 'paypal' ? 'e.g. your-email@example.com' : 'e.g. TxID or Wallet Address'}
                                         className="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
                                     />
                                 </div>

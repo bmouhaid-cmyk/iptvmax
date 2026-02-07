@@ -54,7 +54,14 @@ export default async function CheckoutPage({
                     </div>
                 </div>
 
-                <CheckoutForm packageType={packageType} price={price} userId={user!.id} />
+                <CheckoutForm
+                    packageType={packageType}
+                    price={price}
+                    userId={user!.id}
+                    currency={currency}
+                    paypalPrice={currency === 'MAD' ? (selectedPlan as any).prices?.EUR : currency === 'USDT' ? (selectedPlan as any).prices?.USD : price}
+                    paypalCurrency={currency === 'MAD' ? 'EUR' : currency === 'USDT' ? 'USD' : currency}
+                />
             </div>
         </div>
     )
