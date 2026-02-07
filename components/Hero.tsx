@@ -79,8 +79,8 @@ export default function Hero() {
                                         <Tv className="w-6 h-6 text-red-500" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-white">Live Sports</h3>
-                                        <p className="text-xs text-gray-400">NBA, PL, UFC & More</p>
+                                        <h3 className="font-bold text-white">Live Sports and channels</h3>
+                                        <p className="text-xs text-gray-400">World cup, champions league, la liga, and more,</p>
                                     </div>
                                 </div>
                                 <div className="h-2 bg-slate-700 rounded-full w-full overflow-hidden">
@@ -95,8 +95,8 @@ export default function Hero() {
                                         <Film className="w-6 h-6 text-blue-500" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-white">4K Movies</h3>
-                                        <p className="text-xs text-gray-400">Latest Blockbusters</p>
+                                        <h3 className="font-bold text-white">4K Movies/tv shows</h3>
+                                        <p className="text-xs text-gray-400">Latest Blockbusters and series</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-1 mt-2">
