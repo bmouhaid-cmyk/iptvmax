@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Inter } from 'next/font/google'
 import '../globals.css'
-import ChatWidget from '@/components/ChatWidget'
+import CrispChat from '@/components/CrispChat'
 import { CurrencyProvider } from '@/context/CurrencyContext'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -91,7 +91,7 @@ export default async function LocaleLayout({
             {children}
 
           </CurrencyProvider>
-          <ChatWidget />
+          <CrispChat />
         </NextIntlClientProvider>
       </body>
     </html>
