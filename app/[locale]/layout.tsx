@@ -1,6 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/next"
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Inter } from 'next/font/google'
