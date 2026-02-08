@@ -1,5 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { Analytics } from "@vercel/analytics/react"
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Inter } from 'next/font/google'
@@ -92,6 +93,7 @@ export default async function LocaleLayout({
 
           </CurrencyProvider>
           <CrispChat />
+          <Analytics />
         </NextIntlClientProvider>
       </body>
     </html>
