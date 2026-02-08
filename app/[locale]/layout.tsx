@@ -63,9 +63,7 @@ export const metadata = {
     },
   },
 },
-  verification: {
-    google: '9QTk46eeagpIWSPAkqDU6j9GqEEWtVDdthevfRfmsZM',
-  },
+
 }
 
 export default async function LocaleLayout({
