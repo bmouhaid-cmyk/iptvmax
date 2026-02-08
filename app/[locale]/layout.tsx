@@ -62,6 +62,10 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
+},
+  verification: {
+    google: '9QTk46eeagpIWSPAkqDU6j9GqEEWtVDdthevfRfmsZM',
+  },
 }
 
 export default async function LocaleLayout({
@@ -92,6 +96,63 @@ export default async function LocaleLayout({
             {children}
 
           </CurrencyProvider>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": [
+                  {
+                    "@type": "Organization",
+                    "@id": "https://tv4watch.com/#organization",
+                    "name": "tv4watch",
+                    "url": "https://tv4watch.com",
+                    "logo": "https://tv4watch.com/logo.png",
+                    "sameAs": [
+                      "https://twitter.com/tv4watch",
+                      "https://facebook.com/tv4watch"
+                    ]
+                  },
+                  {
+                    "@type": "WebSite",
+                    "@id": "https://tv4watch.com/#website",
+                    "url": "https://tv4watch.com",
+                    "name": "tv4watch - Premium IPTV Service",
+                    "publisher": {
+                      "@id": "https://tv4watch.com/#organization"
+                    },
+                    "potentialAction": {
+                      "@type": "SearchAction",
+                      "target": "https://tv4watch.com/?q={search_term_string}",
+                      "query-input": "required name=search_term_string"
+                    }
+                  },
+                  {
+                    "@type": "Product",
+                    "name": "Premium IPTV Subscription",
+                    "description": "Access over 10,000 live channels and VODs in 4K/FHD quality. Anti-freeze technology and 24/7 support.",
+                    "brand": {
+                      "@type": "Brand",
+                      "name": "tv4watch"
+                    },
+                    "offers": {
+                      "@type": "Offer",
+                      "url": "https://tv4watch.com/#pricing",
+                      "priceCurrency": "EUR",
+                      "price": "49.00",
+                      "availability": "https://schema.org/InStock",
+                      "priceValidUntil": "2025-12-31"
+                    },
+                    "aggregateRating": {
+                      "@type": "AggregateRating",
+                      "ratingValue": "4.9",
+                      "reviewCount": "1250"
+                    }
+                  }
+                ]
+              })
+            }}
+          />
           <CrispChat />
           <Analytics />
         </NextIntlClientProvider>
