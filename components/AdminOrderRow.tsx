@@ -44,11 +44,16 @@ export default function AdminOrderRow({ order }: { order: any }) {
                                 <option value="Pending">Pending</option>
                                 <option value="Paid">Paid</option>
                                 <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                                <option value="Refunded">Refunded</option>
+                                <option value="Failed">Failed</option>
                             </select>
                         ) : (
                             <span className={`px-2 py-0.5 rounded-full text-xs font-bold uppercase ml-2 ${status === 'Completed' ? 'bg-green-500/10 text-green-500' :
                                 status === 'Pending' ? 'bg-yellow-500/10 text-yellow-500' :
-                                    'bg-gray-500/10 text-gray-500'
+                                    status === 'Paid' ? 'bg-indigo-500/10 text-indigo-500' :
+                                        ['Cancelled', 'Refunded', 'Failed'].includes(status) ? 'bg-red-500/10 text-red-500' :
+                                            'bg-gray-500/10 text-gray-500'
                                 }`}>
                                 {status}
                             </span>

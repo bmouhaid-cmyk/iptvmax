@@ -1,6 +1,6 @@
 'use client'
 
-import { BarChart3, Clock, CreditCard, Package, CheckCircle2, DollarSign, TrendingUp } from 'lucide-react'
+import { BarChart3, Clock, CreditCard, Package, CheckCircle2, DollarSign, TrendingUp, AlertTriangle } from 'lucide-react'
 import { PRICING_PLANS } from '@/lib/constants'
 import { useCurrency } from '@/context/CurrencyContext'
 
@@ -13,6 +13,7 @@ export default function AdminAnalytics({ orders }: { orders: any[] }) {
     const pendingOrders = orders.filter(o => o.status === 'Pending').length
     const paidOrders = orders.filter(o => o.status === 'Paid').length
     const completedOrders = orders.filter(o => o.status === 'Completed').length
+    const notCompletedOrders = orders.filter(o => ['Cancelled', 'Refunded', 'Failed'].includes(o.status)).length
 
     // Payment Methods
     const paymentMethods = orders.reduce((acc: any, order) => {
@@ -55,7 +56,7 @@ export default function AdminAnalytics({ orders }: { orders: any[] }) {
     return (
         <div className="space-y-6 mb-8">
             {/* Main Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-lg">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="text-gray-400 text-sm font-medium">Total Orders</h3>
@@ -105,6 +106,19 @@ export default function AdminAnalytics({ orders }: { orders: any[] }) {
                     <div className="flex items-baseline">
                         <span className="text-3xl font-bold text-white">{completedOrders}</span>
                         <span className="ml-2 text-xs text-gray-500">fulfilled</span>
+                    </div>
+                </div>
+
+                <div className="bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-lg">
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-gray-400 text-sm font-medium">Not Completed</h3>
+                        <div className="p-2 bg-red-500/10 rounded-lg">
+                            <AlertTriangle className="w-5 h-5 text-red-500" />
+                        </div>
+                    </div>
+                    <div className="flex items-baseline">
+                        <span className="text-3xl font-bold text-white">{notCompletedOrders}</span>
+                        <span className="ml-2 text-xs text-gray-500">cancelled/refunded</span>
                     </div>
                 </div>
 

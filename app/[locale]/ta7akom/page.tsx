@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 import AdminOrderRow from '@/components/AdminOrderRow'
 import AdminAnalytics from '@/components/AdminAnalytics'
+import { AlertTriangle } from 'lucide-react'
 
 export default async function AdminDashboard() {
     const supabase = await createClient()
@@ -39,12 +40,28 @@ export default async function AdminDashboard() {
 
     const orders = ordersData as any[]
 
+    const pendingActionCount = orders?.filter(o => o.status === 'Pending' || o.status === 'Paid').length || 0
+
     return (
         <div className="min-h-screen bg-slate-950 text-white">
             <Navbar />
             <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div className="px-4 py-6 sm:px-0">
                     <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
+
+                    {pendingActionCount > 0 && (
+                        <div className="mb-8 p-4 bg-yellow-500/10 border border-yellow-500/50 rounded-lg flex items-center gap-4 animate-pulse">
+                            <div className="p-2 bg-yellow-500/20 rounded-full">
+                                <AlertTriangle className="w-6 h-6 text-yellow-500" />
+                            </div>
+                            <div>
+                                <h3 className="text-yellow-500 font-bold text-lg">Action Required</h3>
+                                <p className="text-gray-300">
+                                    You have <span className="text-white font-bold text-lg underline">{pendingActionCount}</span> orders waiting for fulfillment (Pending or Paid).
+                                </p>
+                            </div>
+                        </div>
+                    )}
 
                     <AdminAnalytics orders={orders} />
 
