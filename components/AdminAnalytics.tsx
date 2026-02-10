@@ -11,7 +11,8 @@ export default function AdminAnalytics({ orders }: { orders: any[] }) {
 
     const totalOrders = orders.length
     const pendingOrders = orders.filter(o => o.status === 'Pending').length
-    const completedOrders = orders.filter(o => o.status === 'Completed' || o.status === 'Paid').length
+    const paidOrders = orders.filter(o => o.status === 'Paid').length
+    const completedOrders = orders.filter(o => o.status === 'Completed').length
 
     // Payment Methods
     const paymentMethods = orders.reduce((acc: any, order) => {
@@ -54,7 +55,7 @@ export default function AdminAnalytics({ orders }: { orders: any[] }) {
     return (
         <div className="space-y-6 mb-8">
             {/* Main Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-lg">
                     <div className="flex items-center justify-between mb-4">
                         <h3 className="text-gray-400 text-sm font-medium">Total Orders</h3>
@@ -78,6 +79,19 @@ export default function AdminAnalytics({ orders }: { orders: any[] }) {
                     <div className="flex items-baseline">
                         <span className="text-3xl font-bold text-white">{pendingOrders}</span>
                         <span className="ml-2 text-xs text-gray-500">needing action</span>
+                    </div>
+                </div>
+
+                <div className="bg-slate-900 border border-slate-800 p-6 rounded-xl shadow-lg">
+                    <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-gray-400 text-sm font-medium">Paid</h3>
+                        <div className="p-2 bg-indigo-500/10 rounded-lg">
+                            <DollarSign className="w-5 h-5 text-indigo-500" />
+                        </div>
+                    </div>
+                    <div className="flex items-baseline">
+                        <span className="text-3xl font-bold text-white">{paidOrders}</span>
+                        <span className="ml-2 text-xs text-gray-500">processing</span>
                     </div>
                 </div>
 
