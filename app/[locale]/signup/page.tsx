@@ -7,6 +7,8 @@ import Link from 'next/link'
 export default function Signup() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [fullName, setFullName] = useState('')
+    const [phone, setPhone] = useState('')
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [success, setSuccess] = useState<string | null>(null)
@@ -24,6 +26,10 @@ export default function Signup() {
             password,
             options: {
                 emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || location.origin}/auth/callback`,
+                data: {
+                    full_name: fullName,
+                    phone: phone,
+                },
             },
         })
 
@@ -50,6 +56,41 @@ export default function Signup() {
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form className="space-y-6" onSubmit={handleSignup}>
+                    <div>
+                        <label htmlFor="fullName" className="block text-sm font-medium leading-6 text-white">
+                            Full Name
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="fullName"
+                                name="fullName"
+                                type="text"
+                                autoComplete="name"
+                                required
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label htmlFor="phone" className="block text-sm font-medium leading-6 text-white">
+                            Phone Number
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="phone"
+                                name="phone"
+                                type="tel"
+                                autoComplete="tel"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                className="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-blue-500 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-white">
                             Email address
