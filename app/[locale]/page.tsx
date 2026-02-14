@@ -8,6 +8,19 @@ import { Tv, Zap, Globe } from 'lucide-react'
 import Link from 'next/link'
 import Hero from '@/components/Hero'
 import { useTranslations } from 'next-intl'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: 'https://tv4watch.com',
+    languages: {
+      'en': 'https://tv4watch.com/en',
+      'fr': 'https://tv4watch.com/fr',
+      'es': 'https://tv4watch.com/es',
+      'ar': 'https://tv4watch.com/ar',
+    },
+  },
+}
 
 export default function Home() {
   const t = useTranslations('Hero')

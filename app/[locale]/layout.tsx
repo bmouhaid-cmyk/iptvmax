@@ -36,20 +36,12 @@ export const metadata = {
       },
     ],
   },
+  metadataBase: new URL('https://tv4watch.com'),
   twitter: {
     card: 'summary_large_image',
     title: 'tv4watch - Premium IPTV Service',
     description: '10,000+ Channels in 4K/FHD with Anti-Freeze Technology',
     images: ['/twitter-image.jpg'], // You should add these images to public folder
-  },
-  alternates: {
-    canonical: 'https://tv4watch.com',
-    languages: {
-      'en': 'https://tv4watch.com/en',
-      'fr': 'https://tv4watch.com/fr',
-      'es': 'https://tv4watch.com/es',
-      'ar': 'https://tv4watch.com/ar',
-    },
   },
   robots: {
     index: true,
